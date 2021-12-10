@@ -1,0 +1,67 @@
+import Image from "next/image";
+import React from "react";
+
+
+export default function Main() {
+  const src = `https://i.ibb.co/pWCTHBT/image.png`;
+
+  return (
+    <main>
+      <dev>
+        <dev>
+        <Image loader={() => src} src={src} width={700} height={300} alt="" />
+          {/* <img src="https://i.ibb.co/pWCTHBT/image.png" alt="" /> */}
+        </dev>
+        <dev>
+          <form action="/action_page.php">
+            {/* <label htmlFor="item">search for item:</label> */}
+            <input type="text" id="item" name="item" placeholder="search for item" className="" />
+          </form>
+        </dev>
+
+        <dev>
+          <h2>POPULAR AUCTIONS</h2>
+          <div className="">
+
+            <div className="" id="Card">
+              
+              <a className="" >
+              <Image loader={() => src} src={src} width={300} height={300} alt="" />
+              </a>
+
+              <div className="">
+                <h4 className="">
+                  <a className="">
+                    2003 Ammann Roller
+                  </a>
+                </h4>
+                <h6 className=""> Mill River, MA | Town of New Marlborough </h6>
+
+              </div>
+              <div className="">
+                <div className="">
+
+                  <p className="">
+                    <i className="" aria-hidden="true"></i>
+                    <span className="">Ended</span>
+                  </p>
+
+                </div>
+                <p className=""><b> $<span className="NumberPart">17,200.00</span></b></p>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </dev>
+      </dev>
+
+
+
+
+    </main>
+  )
+}
+

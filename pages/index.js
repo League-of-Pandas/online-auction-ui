@@ -1,10 +1,15 @@
 import Head from 'next/head'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
+import ItemForm from '../component/ItemForm'
+import LoginForm from '../component/LoginForm'
 import Main from '../component/main/Main'
 import SignUp from '../component/SignUp'
+import { useAuth } from '../contexts/auth'
 export default function Home() {
+  const { user, login, logout } = useAuth();
   return (
+    
     <div>
       <Head>
         <title>Online Auction</title>
@@ -13,10 +18,28 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css" rel="stylesheet"/>
       </Head>
-      <Header />
+      {
+        user ? (
+          <>
+          <Header />
+          <Main  user={user}/>
+          <SignUp user={user}/>
+          <Footer />
+          {/* <StandCookie stands={resources} loading={loading} /> */}
+            </>
+          
+          
+          ) :
+          (
+            <LoginForm login={login} />
+
+          )
+      }
+      {/* <Header />
       <Main />
-      <Footer /> 
-      {/* <SignUp /> */}
+      <Footer />  */}
+      {/* <ItemForm /> */}
+      {/* <SignUp user={user}/> */}
       
     </div>
   )

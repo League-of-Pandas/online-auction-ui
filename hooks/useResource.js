@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
-export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL;
+export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URLS;
 // export const tokenURL = `${apiUrl}api/v1/cookie_stands`
 
 import { useAuth } from '../contexts/auth'
@@ -27,16 +27,16 @@ export default function useResource() {
             handleError(error);
         }
     }
-// http://127.0.0.1:8000/accounts/signup/
-// async function createUser(info) {
+    // http://127.0.0.1:8000/accounts/signup/
+    // async function createUser(info) {
 
-//     try {
-//         await axios.post("http://127.0.0.1:8000/accounts/signup/", info, config());
-//         mutate(); // mutate causes complete collection to be refetched
-//     } catch (error) {
-//         handleError(error);
-//     }
-// }
+    //     try {
+    //         await axios.post("http://127.0.0.1:8000/user/", info, config());
+    //         mutate(); // mutate causes complete collection to be refetched
+    //     } catch (error) {
+    //         handleError(error);
+    //     }
+    // }
     async function createResource(info) {
 
         try {
@@ -89,6 +89,7 @@ export default function useResource() {
         createResource,
         deleteResource,
         updateResource,
+        // createUser,
     }
 }
 

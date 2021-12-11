@@ -1,7 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
-export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URLS;
+export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URLS_ITEMS;
 // export const tokenURL = `${apiUrl}api/v1/cookie_stands`
 
 import { useAuth } from '../contexts/auth'
@@ -40,7 +40,7 @@ export default function useResource() {
     async function createResource(info) {
 
         try {
-            await axios.post(apiUrl, info);
+            await axios.post(apiUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
             handleError(error);

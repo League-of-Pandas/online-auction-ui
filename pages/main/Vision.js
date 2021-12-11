@@ -36,9 +36,9 @@ export default function Vision(){
           </div>
           
           <p className="col-start-1 mt-4 text-sm leading-6 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1">
-          An online auction website that offers variety of valuables, collectables, cars, electronics and much more for the users to browse and bit on.
+          An online auction website that offers variety of valuables, collectables, cars, electronics and much more for the users to browse and bid on.
 
-          And a modern and secure method to bit on your needs without getting mixed in public crowds and to guarantee your safety/
+          And a modern and secure method to bid on your needs without getting mixed in public crowds and to guarantee your safety.
           </p>
         </div>
     </div>

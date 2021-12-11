@@ -38,7 +38,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex items-center justify-between mx-2">
-        <Link href='Login'>
+        <Link href='LoginForm'>
           <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">Login</button>
         </Link>
         <Link href='SignUp'>

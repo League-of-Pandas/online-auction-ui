@@ -3,12 +3,11 @@ import React from "react";
 import Popular from "./Popular";
 import Search from "./Search";
 import Vision from "./Vision";
-import SignUp from '../SignUp'
-
+import { useAuth } from "../../contexts/auth";
 
 export default function Main() {
   const src = `https://i.ibb.co/pWCTHBT/image.png`;
-
+  const {user}=useAuth()
   return (
     <main>
 

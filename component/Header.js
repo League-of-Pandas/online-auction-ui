@@ -1,7 +1,7 @@
 import Link from "next/link"
 export default function Header() {
   return(
-    <header className="">
+    <header data-testid="nav" className="">
       <nav className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-gray-700 bg-white text-md md:py-0">
       
       <div className="flex flex-row items-center space-x-1">

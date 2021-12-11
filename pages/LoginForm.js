@@ -1,5 +1,6 @@
 import React from "react"
 import {useAuth} from "../contexts/auth"
+
 function LoginForm() {
     const {login} = useAuth();
     
@@ -7,14 +8,11 @@ function LoginForm() {
         e.preventDefault()
         const username = e.target.username.value
         const password = e.target.password.value
-        login(username,password)
-
-        
+        login(username,password)   
     }
     return (
         <>
-            <div className="w-2/3 h-56 mx-auto my-10 bg-green-200">
-
+            <div data-testid="login" className="w-2/3 h-56 mx-auto my-10 bg-green-200">
                 <form className="w-3/4 p-2 mx-auto my-4 bg-green-200 " onSubmit={handlelogin}>
                     <div className="flex flex-col items-center justify-center">
                         <label htmlFor="username" >User name</label>

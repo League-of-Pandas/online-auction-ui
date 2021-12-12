@@ -1,8 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
-
+import jwt from 'jsonwebtoken'
 export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS;
-// export const tokenURL = `${apiUrl}api/v1/cookie_stands`
 
 import { useAuth } from '../contexts/auth'
 
@@ -52,10 +51,15 @@ export default function useItems() {
     }
 
     async function updateResource(resource) {
-        // STRETCH
-        // Add ability for user to update an existing resource
+        try {
+            const url = apiUrl + id;
+            await axios.delete(url, resource, config());
+            mutate(); // mutate causes complete collection to be refetched
+        } catch (error) {
+            handleError(error);
+        }
     }
-    
+
     // helper function to handle getting Authorization headers EXACTLY right
     function config() {
 
@@ -66,13 +70,17 @@ export default function useItems() {
         }
     }
 
-    function handleError(error) {
+    async function handleError(error) {
         console.error(error);
-        // console.log(error);
-        // currently just log out on error
-        // but a common error will be short lived token expiring
-        // STRETCH: refresh the access token when it has expired
-        logout();
+        // if (error) {
+        //     if (error.response.status === 401) {
+        //         const ref = jwt.decode(tokens.refresh)
+        //         const response = await axios.post(tokenRefreshURL, { ref })
+        //         tokens.access = response.data.access
+        //     }
+        //     logout()
+        // }
+        logout()
     }
 
     return {

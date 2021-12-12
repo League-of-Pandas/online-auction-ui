@@ -64,14 +64,15 @@ export default function Header() {
                   <Link href='LoginForm'>
                     <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">Login</button>
                   </Link>
+                  <Link href='SignUp' >
+                    <button className="px-4 py-2 font-bold text-white bg-yellow-500 border border-yellow-500 rounded hover:bg-yellow-700">Register</button>
+                  </Link>
                   {/* {console.log(user)} */}
                 </>
               )
           }
 
-          <Link href='SignUp'>
-            <button className="px-4 py-2 font-bold text-white bg-yellow-500 border border-yellow-500 rounded hover:bg-yellow-700">Register</button>
-          </Link>
+
         </div>
       </nav>
     </header>

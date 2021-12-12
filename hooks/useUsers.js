@@ -6,7 +6,7 @@ export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URLS;
 
 import { useAuth } from '../contexts/auth'
 
-export default function useResource() {
+export default function useUsers() {
 
     const { tokens, logout } = useAuth()
 
@@ -31,7 +31,9 @@ export default function useResource() {
     async function createResource(info) {
 
         try {
-            await axios.post(apiUrl, info, config());
+            await axios.post(apiUrl, info);
+            // await axios.post(apiUrl, info, config());
+
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
             handleError(error);

@@ -1,12 +1,11 @@
 import axios from 'axios'
 import useSWR from 'swr'
-
-export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URLS;
-// export const tokenURL = `${apiUrl}api/v1/cookie_stands`
+import jwt from 'jsonwebtoken'
+export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS;
 
 import { useAuth } from '../contexts/auth'
 
-export default function useResource() {
+export default function useItems() {
 
     const { tokens, logout } = useAuth()
 
@@ -19,6 +18,8 @@ export default function useResource() {
         // }
 
         try {
+            // const response = await axios.get(url, config());
+
             const response = await axios.get(url);
 
             return response.data;
@@ -27,20 +28,11 @@ export default function useResource() {
             handleError(error);
         }
     }
-    // http://127.0.0.1:8000/accounts/signup/
-    // async function createUser(info) {
 
-    //     try {
-    //         await axios.post("http://127.0.0.1:8000/user/", info, config());
-    //         mutate(); // mutate causes complete collection to be refetched
-    //     } catch (error) {
-    //         handleError(error);
-    //     }
-    // }
     async function createResource(info) {
 
         try {
-            await axios.post(apiUrl, info);
+            await axios.post(apiUrl, info, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
             handleError(error);
@@ -59,10 +51,15 @@ export default function useResource() {
     }
 
     async function updateResource(resource) {
-        // STRETCH
-        // Add ability for user to update an existing resource
+        try {
+            const url = apiUrl + id;
+            await axios.delete(url, resource, config());
+            mutate(); // mutate causes complete collection to be refetched
+        } catch (error) {
+            handleError(error);
+        }
     }
-    
+
     // helper function to handle getting Authorization headers EXACTLY right
     function config() {
 
@@ -73,13 +70,17 @@ export default function useResource() {
         }
     }
 
-    function handleError(error) {
+    async function handleError(error) {
         console.error(error);
-        // console.log(error);
-        // currently just log out on error
-        // but a common error will be short lived token expiring
-        // STRETCH: refresh the access token when it has expired
-        logout();
+        // if (error) {
+        //     if (error.response.status === 401) {
+        //         const ref = jwt.decode(tokens.refresh)
+        //         const response = await axios.post(tokenRefreshURL, { ref })
+        //         tokens.access = response.data.access
+        //     }
+        //     logout()
+        // }
+        logout()
     }
 
     return {

@@ -1,5 +1,6 @@
 import useItems from "../../hooks/useItems";
 import Moment from 'moment';
+import Link from "next/link";
 
 export default function Popular() {
   Moment.locale('en');
@@ -9,7 +10,7 @@ export default function Popular() {
     // console.log(loading);
     return (
       <>
-      <h1>LOADING</h1>
+        <h1>LOADING</h1>
       </>
     )
   } else {
@@ -45,10 +46,12 @@ export default function Popular() {
                         <div className="flex justify-between mt-4">
                           <div>
                             <h3 className="text-sm text-gray-700">
-                              <a href="#">
+                              <Link href='/ItemDetail'>
+                              <a >
                                 <span aria-hidden="true" className="absolute inset-0"></span>
                                 {item.item_name}
                               </a>
+                              </Link>
                             </h3>
                             {
                               console.log(hourNow)

@@ -14,12 +14,12 @@ export default function useUsers() {
 
     async function fetchResource(url) {
 
-        // if (!tokens) {
-        //     return;
-        // }
+        if (!tokens) {
+            return;
+        }
 
         try {
-            const response = await axios.get(url);
+            const response = await axios.get(url, config());
 
             return response.data;
 

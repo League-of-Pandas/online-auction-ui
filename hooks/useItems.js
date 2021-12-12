@@ -1,12 +1,12 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
-export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URLS;
+export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS;
 // export const tokenURL = `${apiUrl}api/v1/cookie_stands`
 
 import { useAuth } from '../contexts/auth'
 
-export default function useResource() {
+export default function useItems() {
 
     const { tokens, logout } = useAuth()
 
@@ -14,12 +14,14 @@ export default function useResource() {
 
     async function fetchResource(url) {
 
-        if (!tokens) {
-            return;
-        }
+        // if (!tokens) {
+        //     return;
+        // }
 
         try {
-            const response = await axios.get(url, config());
+            // const response = await axios.get(url, config());
+
+            const response = await axios.get(url);
 
             return response.data;
 
@@ -27,7 +29,7 @@ export default function useResource() {
             handleError(error);
         }
     }
-    
+
     async function createResource(info) {
 
         try {

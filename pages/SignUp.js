@@ -40,9 +40,9 @@ function SignUp() {
             last_name: "",
             email: "tahany3@yahoo.com"
         }
-        console.log(hashedPassword);
-        console.log(salt);
-        console.log(newUser);
+        // console.log(hashedPassword);
+        // console.log(salt);
+        // console.log(newUser);
         // createResource(newUser)
         // await axios.post("http://127.0.0.1:8000/user/", newUser)
         // let userN = await axios.post("http://127.0.0.1:8000/user/", newUser);

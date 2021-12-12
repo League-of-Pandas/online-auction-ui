@@ -1,13 +1,46 @@
-import React from "react";
-import Footer from "./Footer";
-import Header from "./Header";
+import React, { useEffect } from "react";
+import { useAuth } from "../contexts/auth";
+import useItems from "../hooks/useItems";
+// import Footer from "./Footer";
+// import Header from "./Header";
 
 export default function ItemForm() {
+    const {  user,login  } = useAuth();
+    
+    const {loading , resources, createResource } = useItems();
+    // useEffect(() => {
+    //     login("admin","auction123")
 
+    // }, [login]);
+    
+    function handleCreateItem(e) {
+        e.preventDefault()
+        const newUser = {
+            id : resources?.length ,
+            item_name: e.target.title.value,
+            image: "e.target.username.value",
+            category:e.target.category.value ,
+            description: e.target.description.value,
+            init_price: e.target.price.value,
+            highest_bidder: null,
+            start_data: e.target.start_time.value,
+            end_data: e.target.end_time.value,
+            bidder_counter: 0,
+            favorite_counter: 0,
+            is_sold: false,
+            is_expirated: true,
+            owner: user.id,
+        }
+        console.log( newUser);
+        createResource(newUser)
+
+
+        // console.log(user);
+    }
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
 
             <div>
                 <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -20,8 +53,8 @@ export default function ItemForm() {
                         </div>
                     </div>
                     <div className="mt-5 md:mt-0 md:col-span-2">
-                        <form action="#" method="POST">
-                            <div className="shadow  sm:rounded-md sm:overflow-hidden">
+                        <form onSubmit={handleCreateItem}>
+                            <div className="shadow sm:rounded-md sm:overflow-hidden">
                                 <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
                                     <div className="grid grid-cols-3 gap-6">
                                         <div className="col-span-3 sm:col-span-2">
@@ -147,8 +180,8 @@ export default function ItemForm() {
                                                 </label>
                                                 <input
                                                     type="datetime-local"
-                                                    name="item-Name"
-                                                    id="item-Name"
+                                                    name="start_time"
+                                                    id="start-time"
                                                     // autoComplete="email"
                                                     className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 />
@@ -166,8 +199,8 @@ export default function ItemForm() {
                                                 </label>
                                                 <input
                                                     type="datetime-local"
-                                                    name="item-Name"
-                                                    id="item-Name"
+                                                    name="end_time"
+                                                    id="end-time"
                                                     // autoComplete="email"
                                                     className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 />
@@ -249,7 +282,7 @@ export default function ItemForm() {
             </div>
             {/*  */}
 
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

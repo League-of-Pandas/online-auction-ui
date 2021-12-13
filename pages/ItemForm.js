@@ -49,14 +49,14 @@ export default function ItemForm() {
                     category: e.target.category.value,
                     description: e.target.description.value,
                     init_price: e.target.price.value,
-                    min_bid: e.target.min_bid.value,
-                    highest_bidder: null,
-                    start_data: e.target.start_time.value,
-                    end_data: e.target.end_time.value,
+                    bid_increment: e.target.bid_increment.value,
+                    highest_bidding: 0,
+                    start_date: e.target.start_time.value,
+                    end_date: e.target.end_time.value,
                     bidder_counter: 0,
                     favorite_counter: 0,
                     is_sold: false,
-                    is_expirated: true,
+                    is_expirated: false,
                     owner: user.id,
                     bidder: null
                 }
@@ -196,9 +196,9 @@ export default function ItemForm() {
                                         </div>
                                     </div>
 
-                                    {/* -------min_bid ------- */}
+                                    {/* -------bid_increment ------- */}
                                     <div>
-                                        <label htmlFor="min_bid" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="bid_increment" className="block text-sm font-medium text-gray-700">
                                         Min Bid
                                         </label>
                                         <div className="relative mt-1 rounded-md shadow-sm ">
@@ -207,8 +207,8 @@ export default function ItemForm() {
                                             </div> */}
                                             <input
                                                 type="number"
-                                                name="min_bid"
-                                                id="min_bid"
+                                                name="bid_increment"
+                                                id="bid_increment"
                                                 className="block w-full pr-20 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 pl-7 sm:text-sm"
                                                 placeholder="0"
                                                 min="1"

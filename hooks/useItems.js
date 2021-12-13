@@ -50,10 +50,10 @@ export default function useItems() {
         }
     }
 
-    async function updateResource(resource) {
+    async function updateResource(resource,id) {
         try {
-            const url = apiUrl + id;
-            await axios.delete(url, resource, config());
+            const url = apiUrl + id + "/";
+            await axios.put(url, resource, config());
             mutate(); // mutate causes complete collection to be refetched
         } catch (error) {
             handleError(error);

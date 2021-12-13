@@ -5,12 +5,14 @@ import { useAuth } from "../contexts/auth";
 import axios from "axios";
 import { useState } from "react";
 import useItems from "../hooks/useItems";
+import { useEffect } from "react/cjs/react.development";
 
 
 export default function Update() {
   const { loading, resources, updateResource } = useItems();
+  // const [item, setItem] = useState([])
+  // Get Current Data
   let newDate = new Date()
-
   let year = newDate.getFullYear();
   let month = newDate.getMonth() + 1;
   let day = newDate.getDate();
@@ -21,14 +23,22 @@ export default function Update() {
       console.log(loading);
     } else {
       resources?.map((item) => {
-
-        let dataApi = String(item.end_data)
+        // console.log(item);
+        // Get item end date
+        let dataApi = String(item.end_date)
         let yearApi = dataApi.slice(0, 4)
         let monthApi = dataApi.slice(5, 7)
         let dayApi = parseInt(dataApi.slice(8, 10))
         let hourApi = dataApi.slice(11, 13)
         let minutesApi = dataApi.slice(14, 16)
         const time = `${monthApi} ${dayApi}, ${yearApi} ${hourApi}:${minutesApi}`
+        console.log("year", yearApi, "-", year);
+        console.log("month", monthApi, "-", month);
+        console.log("day", dayApi, "-", day);
+        console.log("hour", hourApi, "-", hour);
+        console.log("minutes", minutesApi, "-", minutes);
+
+
         if (
           (
             yearApi < year ||
@@ -40,8 +50,9 @@ export default function Update() {
           &&
           item.is_expirated == false
         ) {
-          console.log(minutesApi ," " ,minutes);
-          const newUser = {
+          // console.log(item);
+          console.log(minutesApi, " ", minutes);
+          const newItem = {
             // id: 12,
             item_name: item.item_name,
             image: item.image,
@@ -50,20 +61,23 @@ export default function Update() {
             init_price: item.init_price,
             highest_bidding: item.highest_bidding,
             bid_increment: item.bid_increment,
-            start_data: item.start_data,
-            end_data: item.end_data,
+            start_date: item.start_date,
+            end_date: item.end_date,
             bidder_counter: item.bidder_counter,
             favorite_counter: item.favorite_counter,
             is_sold: item.is_sold,
             is_expirated: true,
-            owner: item.owner,
-            bidder: item.bidder
+            // owner: item.owner,
+            // bidder: item.bidder
           }
-          console.log(newUser);
-
-          updateResource(newUser, item.id)
+          console.log(newItem);
+          // setItem(newItem)
+          updateResource(newItem, item.id)
+          // console.log(item);
 
         }
+
+
         return (
           <></>
           // console.log(time)
@@ -78,11 +92,14 @@ export default function Update() {
 
 
   // function update() {
-  //   updateResource(newUser, 12)
+  //   updateResource(newItem, 12)
   // }
 
 
-
+  // useEffect(() => {
+  //   console.log("useEffect");
+  //   updateResource(item[0], item.id)
+  // }, [item])
   return (
     <>
       <button onClick={handleUpdate}>Update </button>
@@ -90,7 +107,7 @@ export default function Update() {
   );
 }
 
-// const newUser = {
+// const newItem = {
 //   // id: 12,
 //   item_name: "1882 $1 MORGAN SILVER DOLLARDOLLAR",
 //   image: "https://i.ebayimg.com/thumbs/images/g/I18AAOSw~9xhs-Pu/s-l225.jpg",
@@ -108,7 +125,7 @@ export default function Update() {
 //   owner: 5,
 //   bidder: 9
 // }
-// // console.log(newUser);
+// // console.log(newItem);
 // function update() {
-//   updateResource(newUser, 12)
+//   updateResource(newItem, 12)
 // }

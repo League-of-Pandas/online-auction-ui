@@ -50,13 +50,13 @@ export default function ItemForm() {
                     description: e.target.description.value,
                     init_price: e.target.price.value,
                     bid_increment: e.target.bid_increment.value,
-                    highest_bidding: null,
-                    start_data: e.target.start_time.value,
-                    end_data: e.target.end_time.value,
+                    highest_bidding: 0,
+                    start_date: e.target.start_time.value,
+                    end_date: e.target.end_time.value,
                     bidder_counter: 0,
                     favorite_counter: 0,
                     is_sold: false,
-                    is_expirated: true,
+                    is_expirated: false,
                     owner: user.id,
                     bidder: null
                 }

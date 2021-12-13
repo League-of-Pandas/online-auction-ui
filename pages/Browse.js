@@ -32,7 +32,7 @@ export default function Browse() {
     } else {
 
       if (category !== "All") {
-        await resources.filter((item) => {
+        await resources?.filter((item) => {
           if (item.category === category) {
             newArr.push(item);
           }
@@ -66,11 +66,14 @@ export default function Browse() {
         let newDate = new Date()
         let dayNow = newDate.getDate()      // Current Day
         let hourNow = newDate.getHours()    // Current Hour
-        var dt = item.end_data;             // End Date from API
+        let minateNow = newDate.getMinutes()
+        var dt = item.end_date;             // End Date from API
         var day = Moment(dt).format('D')
         day = day - dayNow                  // rest of Day
         var hours = Moment(dt).format('H')
-        hours = Math.abs(hours - hourNow)   // rest of Hour
+        hours = Math.abs(hours - hourNow)
+        var minate = Moment(dt).format('M')
+        minate = Math.abs(minate - minateNow)    // rest of Hour
         return (
 
           <div key={`${key}`} className="container">
@@ -94,7 +97,7 @@ export default function Browse() {
                   {
                     (item.is_sold == false && item.is_expirated == false) ? (
                       <p key={item.id}>
-                        End Date:{day} Days - {hours} Hours
+                        End Date:{day} Days - {hours} Hours - {minate} Minate
                       </p>
                     ) :
                       (

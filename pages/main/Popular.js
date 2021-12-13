@@ -46,7 +46,8 @@ export default function Popular() {
                         <div className="flex justify-between mt-4">
                           <div>
                             <h3 className="text-sm text-gray-700">
-                              <Link href='/ItemDetail'>
+                              
+                              <Link href='/detail/[id].js' as={`/detail/${item.id}`} >
                               <a >
                                 <span aria-hidden="true" className="absolute inset-0"></span>
                                 {item.item_name}

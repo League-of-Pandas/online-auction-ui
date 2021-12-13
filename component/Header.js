@@ -32,7 +32,7 @@ export default function Header() {
               About Us
             </a>
           </Link>
-          <Link href="Update">
+          <Link href="#">
             <a
 
               className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500"

@@ -10,7 +10,7 @@ export default function Main() {
   const { loading, resources, updateResource } = useItems()
   
   
-  useEffect(() => {
+  // useEffect(() => {
     // handleUpdate()
       // console.log(resources?.[0].end_data);
   
@@ -44,7 +44,7 @@ export default function Main() {
       // console.log(dataApi);
       // console.log(`CURRENT: ${year} ${month} ${day} ${hour} ${minutes} `)
   
-  },[loading, resources]);
+  // },[loading, resources]);
 
   return (
     <main>

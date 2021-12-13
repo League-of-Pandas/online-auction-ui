@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useEffect } from "react";
 import Popular from "./Popular";
 import Search from "./Search";

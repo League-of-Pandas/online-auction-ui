@@ -1,8 +1,8 @@
 import useResource from "../../hooks/useResource1";
 import { useState } from "react";
-import {useRouter} from 'next/router'
+import {useRouter} from 'next/router';
 
-export default function Search({action = '/Browse'}){
+export default function Search({action = '/SearchResult'}){
   const router = useRouter()
   const { resources } = useResource();
   const [arr, setArr] = useState([]);

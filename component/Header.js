@@ -1,9 +1,10 @@
 import Link from "next/link"
 import { useEffect } from "react";
 import { useAuth } from "../contexts/auth"
+// import 
 export default function Header() {
   const { user, logout } = useAuth()
-
+  // const router = useRouter()
   return (
     <header className="" data-testid="nav">
       <nav className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-gray-700 bg-white text-md md:py-0">

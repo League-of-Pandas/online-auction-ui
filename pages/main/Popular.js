@@ -1,79 +1,83 @@
 import useItems from "../../hooks/useItems";
-import Moment from 'moment';
+import Moment from "moment";
 import Link from "next/link";
 
 export default function Popular() {
-  Moment.locale('en');
+  Moment.locale("en");
   // const [arr,setArr] = useState([])
-  const { resources, loading } = useItems()
+  const { resources, loading } = useItems();
   if (loading) {
     // console.log(loading);
     return (
       <>
         <h1>LOADING</h1>
       </>
-    )
+    );
   } else {
-
-    // console.log(resources)
-
     return (
-
-      <div>
-        <div className="bg-white">
-          <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">POPULAR AUCTIONS</h2>
-
-            <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-              {/* -------- iTEMS -------- */}
-              {
-                resources?.map((item) => {
-                  if (item.favorite_counter >= 20 && item.is_sold == false && item.is_expirated == false) {
-                    let newDate = new Date()
-                    let dayNow = newDate.getDate()      // Current Day
-                    let hourNow = newDate.getHours()    // Current Hour
-                    var dt = item.end_data;             // End Date from API
-                    var day = Moment(dt).format('D')
-                    day = day - dayNow                  // rest of Day
-                    var hours = Moment(dt).format('H')
-                    hours = Math.abs(hours - hourNow)   // rest of Hour
-                    return (
-                      // <p key={item.id}> {item.item_name}</p>
-                      <div key={item.id} className="relative ">
-                        <div className="w-full overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                          <img src={item.image} alt={item.item_name} className="object-cover object-center w-full h-full lg:w-full lg:h-full" />
-                        </div>
-                        <div className="flex justify-between mt-4">
-                          <div>
-                            <h3 className="text-sm text-gray-700">
-                              
-                              <Link href='/detail/[id].js' as={`/detail/${item.id}`} >
-                              <a >
-                                <span aria-hidden="true" className="absolute inset-0"></span>
-                                {item.item_name}
-                              </a>
-                              </Link>
-                            </h3>
-                            {
-                              console.log(hourNow)
-                            }
-                            {/* 2021-12-18T12:00:00Z*/}
-
-                            <p className="mt-1 text-sm text-gray-500"> {day} Days - {hours} Hours</p>
-                            <p className="mt-1 text-sm text-gray-500"> ${item.init_price}</p>
-                          </div>
-
-                        </div>
+      <div className="bg-white ">
+        <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <h2 className="mb-10 text-2xl font-bold text-center">
+            POPULAR AUCTIONS
+          </h2>
+          <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {/* -------- iTEMS -------- */}
+            {resources?.map((item) => {
+              if (
+                item.favorite_counter >= 20 &&
+                item.is_sold == false &&
+                item.is_expirated == false
+              ) {
+                let newDate = new Date();
+                let dayNow = newDate.getDate(); // Current Day
+                let hourNow = newDate.getHours(); // Current Hour
+                var dt = item.end_data; // End Date from API
+                var day = Moment(dt).format("D");
+                day = day - dayNow; // rest of Day
+                var hours = Moment(dt).format("H");
+                hours = Math.abs(hours - hourNow); // rest of Hour
+                return (
+                  // <p key={item.id}> {item.item_name}</p>
+                  <div key={item.id} className="relative rounded-xl">
+                    <div className="">
+                      <img
+                        src={item.image}
+                        alt={item.item_name}
+                        className="w-full h-48 rounded-xl"
+                      />
+                    </div>
+                    <div className="flex flex-col items-center justify-around pb-4 pl-2 mt-4 rounded-lg shadow-xl">
+                      <div className="">
+                        <h3 className="text-sm ">
+                          <Link
+                            href="/detail/[id].js"
+                            as={`/detail/${item.id}`}
+                          >
+                            <a>
+                              {item.item_name}
+                            </a>
+                          </Link>
+                        </h3>
+                        {console.log(hourNow)}
+                        {/* 2021-12-18T12:00:00Z*/}
+                        <p className="mt-1 text-sm font-semibold text-yellow-600">
+                          {" "}
+                          {day} Days - {hours} Hours
+                        </p>
+                        <p className="mt-1 mb-2 text-sm font-bold text-gray-800">
+                          {" "}
+                          price: ${item.init_price}
+                        </p>
                       </div>
-                    )
-                  }
-                })
+                      <button className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
+                    </div>
+                  </div>
+                );
               }
-            </div>
+            })}
           </div>
         </div>
       </div>
-    )
+    );
   }
-
 }

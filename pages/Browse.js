@@ -2,12 +2,13 @@ import Image from "next/image";
 import useResource from "../hooks/useResource1";
 import { useAuth } from "../contexts/auth";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Browse() {
   const { resources } = useResource();
-  console.log(resources);
-  const [arr, setArr] = useState([]);
+  // console.log(resources);
+  const [arr, setArr] = useState(resources);
+  console.log(arr)
 
   const CATEGORY_CHOICES = [
     ("All", "All"),
@@ -39,6 +40,7 @@ export default function Browse() {
       });
     }
   }
+  
   return (
     <>
       <div className="container mx-8">

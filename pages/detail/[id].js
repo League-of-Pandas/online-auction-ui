@@ -1,17 +1,20 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { AuthProvider } from '../../contexts/auth';
+import useItems from '../../hooks/useItems';
 export default function ItemDetail(props) {
     const [timeLeft, setTimeLeft] = useState(null)
     const [itemProps, setItemProps] = useState({})
+    const {updateResource} = useItems()
+    const {login}= AuthProvider()
     let dataApi = String(props.data.end_date)
-
     let yearApi = dataApi.slice(0, 4)
     let monthApi = dataApi.slice(5, 7)
     let dayApi = parseInt(dataApi.slice(8, 10))
     let hourApi = dataApi.slice(11, 13)
     let minutesApi = dataApi.slice(14, 16)
     const time = `${monthApi} ${dayApi}, ${yearApi} ${hourApi}:${minutesApi}`
-    // console.log(time);
+    // console.log(props);
     let countDownDate = new Date(time).getTime();
     let x = setInterval(function () {
         let now = new Date().getTime();
@@ -30,23 +33,44 @@ export default function ItemDetail(props) {
     let totelPrice = props.data.init_price
     function handelBidding(e) {
         e.preventDefault()
-        let bidding = parseInt( e.target.bidding.value) 
-        // totelPrice = props.data.init_price
+        let bidding = parseInt(e.target.bidding.value)
         totelPrice += bidding
-        console.log(totelPrice);
+        const url = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + props.data.id + "/";
+        let body={
+            highest_bidding: totelPrice,
+            bidder_counter: props.data.bidder_counter + 1,
+        }
+        console.log(body)
+        updateResource(body,props.data.id)
     }
     return (
 
         <div className='w-screen'>
             <p className='mt-20 text-3xl text-center'>{props.data.item_name}</p>
 
-            <div className='flex content-between w-11/12 m-auto mt-10'>
-                <section className='w-8/12'>
-                    <img className='object-contain m-auto' src={props.data.image} alt='item'/>
+            <div className='flex justify-around w-11/12 m-auto mt-10 border-2'>
+                <section className=''>
+                    <img className='object-contain m-auto' src={props.data.image} alt='item' />
                 </section>
-                <section className='w-4/12 text-center'>
-                    <p>This Auction Ends In:</p>
-                    <p>{timeLeft}</p>
+                <section className='justify-between text-center'>
+                    <div>
+                        <p>This Auction Ends In:</p>
+                        <p>{timeLeft}</p>
+                    </div>
+                    <div>
+                        <form onSubmit={(e)=>handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <div className="flex items-center flex-1 w-0">
+                                <input required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="font-medium text-indigo-600 border-2 hover:text-indigo-500 border-neutral-900" />
+                            </div>
+                            <div className="flex-shrink-0 ml-4">
+                                <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                    SUBMIT
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                
+                    
                 </section>
             </div>
 
@@ -59,9 +83,9 @@ export default function ItemDetail(props) {
                     </div>
                     <div className="border-t border-gray-200">
                         <dl>
-                        <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt className="text-sm font-medium text-gray-500"> Name</dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$ {props.data.item_name}</dd>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {props.data.item_name}</dd>
                             </div>
 
                             <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -78,27 +102,10 @@ export default function ItemDetail(props) {
                                 </dd>
                             </div>
                             <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                {/* <dt className="text-sm font-medium text-gray-500"></dt> */}
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <ul role="list" className="border border-gray-200 divide-y divide-gray-200 rounded-md">
-                                        <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                                            <form onChange={handelBidding} className="font-medium text-indigo-600 hover:text-indigo-500">
-                                            <div className="flex items-center flex-1 w-0">
-                                                
-                                                <input type="number" name="bidding" min={props.data.bid_increment} className="font-medium text-indigo-600 hover:text-indigo-500" />
-                                            </div>
-                                            <div className="flex-shrink-0 ml-4">
-                                                <button  className="font-medium text-indigo-600 hover:text-indigo-500">
-                                                    Bidding
-                                                </button>
-                                                
-                                            </div>
-                                            </form>
-                                        </li>
-                                        
-                                    </ul>
-                                </dd>
+                                <dt className="text-sm font-medium text-gray-500"> Bid Increment</dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$ {props.data.bid_increment}</dd>
                             </div>
+                         
                         </dl>
                     </div>
                 </div>
@@ -111,7 +118,7 @@ export default function ItemDetail(props) {
 
 export async function getServerSideProps(context) {
     const context_id = context.query.id
-    const response = await axios.get("http://127.0.0.1:8002/api/v1/items/" + context_id);
+    const response = await axios.get(process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + context_id);
 
     // console.log("getServerSideProps", response.data)
     // console.log(context.query);

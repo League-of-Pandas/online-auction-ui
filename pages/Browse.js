@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import useItems from "../hooks/useItems";
 import Moment from 'moment';
+import Link from "next/link";
 
 
 export default function Browse() {
@@ -108,7 +109,9 @@ export default function Browse() {
                   }
                   {/* End Date:{day} Days - {hours} Hours */}
                 </h4>
+                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
                 <button className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
+                </Link>
               </div>
             </div>
           </div>

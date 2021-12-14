@@ -25,8 +25,7 @@ export default function Popular() {
             {resources?.map((item) => {
               if (
                 item.favorite_counter >= 20 &&
-                item.is_sold == false &&
-                item.is_expirated == false
+                item.is_sold == false 
               ) {
                 let newDate = new Date();
                 let dayNow = newDate.getDate(); // Current Day

@@ -7,7 +7,6 @@ export default function LoginForm() {
     const { login, user } = useAuth();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-
     function handlelogin(e) {
         e.preventDefault()
         const username = e.target.username.value

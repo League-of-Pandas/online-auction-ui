@@ -1,18 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-// import useResource from "../hooks/useResource1";
-import { useAuth } from "../contexts/auth";
-import axios from "axios";
+import useResource from "../hooks/useItems";
 import { useState } from "react";
-import useItems from "../hooks/useItems";
+import { useRouter } from 'next/router';
 import Moment from 'moment';
 import Link from "next/link";
 
 
-export default function Browse() {
-  const { loading, resources } = useItems();
-  // console.log(resources);
-  const [arr, setArr] = useState(resources);
+export default function SearchResult(){
+    const router = useRouter()
+  console.log(router.query);
+  let search = Object.values(router.query)[0];
+  let new_name = search.replace(/ /g,'')
 
   const CATEGORY_CHOICES = [
     ("All", "All"),
@@ -24,35 +21,54 @@ export default function Browse() {
     ("Jewelry", "Jewelry"),
   ];
 
-  let newArr = [];
+    const { loading,resources } = useResource();
 
-  async function filter(event) {
-    let category = event.target.value;
-    if (loading) {
-      console.log(loading);
-    } else {
+        let arr = []
+        function filterItems (){
+          for(let i=0; i<resources?.length; i++){
+            let replaced_name = resources[i].item_name.replace(/ /g,'')
+            if(replaced_name.includes(new_name)){
+              console.log(resources[i].item_name);
+              console.log(resources[i]);
+              arr.push(resources[i])
+              console.log(arr);
+                return arr;
+              
+                
+          }}}
+          let filtered_items = filterItems()
+          const [result, setArr] = useState(filtered_items);
+          let newArr = []
+          async function filter(event) {
+            let category = event.target.value;
 
-      if (category !== "All") {
-        await resources?.filter((item) => {
-          if (item.category === category) {
-            newArr.push(item);
+            if (loading) {
+              console.log('loading',loading);
+            } else {
+        
+            if (category !== "All" && filtered_items) {
+              filtered_items.filter((item) => {
+                if (item.category === category) {
+                  newArr.push(item);
+                }
+                setArr(() => {
+                  return newArr;
+                });
+              });
+            } else {
+              setArr(() => {
+                return arr;
+              });
+            }
           }
-          setArr(() => {
-            return newArr;
-          });
-        });
-      } else {
-        setArr(() => {
-          return resources;
-        });
-      }
-    }
+        }
+          
+          
+        
 
-  }
-  
-  return (
-    <>
-      <div className="container mx-8">
+    return(
+        <>
+        <div className="container mx-8">
         <label htmlFor="cars" className="mx-2 bg-white rounded-md focus:outline-none">Category</label>
         <select className="px-2 text-sm text-gray-700 " name="cars" id="cars" onChange={filter}>
           {CATEGORY_CHOICES.map((category, key) => {
@@ -64,7 +80,8 @@ export default function Browse() {
           })}
         </select>
       </div>
-      {arr?.map((item, key) => {
+    {arr.length?result.map((item,key)=>{
+        console.log(item);
         let newDate = new Date()
         let dayNow = newDate.getDate()      // Current Day
         let hourNow = newDate.getHours()    // Current Hour
@@ -104,21 +121,16 @@ export default function Browse() {
                     ) :
                       (
                         <p key={item.id}>
-                          End Date: expirated
-                        </p>
-                      )
-                  }
-                  {/* End Date:{day} Days - {hours} Hours */}
-                </h4>
-                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                          End Date: Expired
+                        </p> ) }</h4>
+                        <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
                 <button className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
-              </div>
-            </div>
-          </div>
+                        </div> </div></div> )}):<h2 className='text-xl text-center my-16'>No Matching Items</h2>}
+      </>
+    )
+    
+    
+        
 
-        );
-      })}
-    </>
-  );
 }

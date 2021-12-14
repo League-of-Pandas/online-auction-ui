@@ -28,10 +28,16 @@ export default function Header() {
             </a>
           </Link>
           <Link href="#">
-            <a className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500">
+          <a className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500">
               Contact Us
             </a>
           </Link>
+          <Link href="/SearchResult">
+            <a>
+
+            </a>
+          </Link>
+
         </div>
         <div className="flex items-center justify-between mx-2">
           {user ? (

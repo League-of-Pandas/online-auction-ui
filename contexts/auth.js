@@ -43,9 +43,9 @@ export function AuthProvider(props) {
        logout,
    });
     async function login(username,password) {
+        
         try{
             const response = await axios.post(tokenURL,{username,password});
-            // console.log(response);
             const decodeAccess = jwt.decode(response.data.access);
             // console.log(decodeAccess);
             localStorage.setItem('token', JSON.stringify(response.data))

@@ -14,7 +14,7 @@ function SignUpForm() {
             username: e.target.UserName.value,
             email: e.target.email.value
         }
-        console.log(newUser);
+        console.log('register user',newUser);
 
         createResource(newUser)
         // NEXT_PUBLIC_RESOURCE_URLS

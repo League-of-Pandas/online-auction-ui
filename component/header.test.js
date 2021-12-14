@@ -1,13 +1,13 @@
-// import React from 'react';
-// import {render, screen, cleanup, getByText} from '@testing-library/react'
-// import Header from "./Header";
-// import {useAuth, AuthProvider, AuthContext} from "../contexts/auth"
+import React from 'react';
+import {render, screen} from '@testing-library/react'
+import Header from "./Header";
+import {AuthProvider} from "../contexts/auth"
 
-// describe('AuthProvider', () => {
-//    it("authed is false by default", () => {
-//     render(<Header />)
-//     render(<AuthProvider />)
-//     const headerElement = screen.getByTestId('nav')
-//     expect(headerElement).toThrowErrorMatchingInlineSnapshot("Please use this context in a descendent of the AuthProvider")
-//    })
-// });
+
+test('NameConsumer shows default value', () => {
+  render(<AuthProvider/>)
+  render(<Header />)
+  
+  expect(screen.getByTestId("nav")).toHaveTextContent('Home')
+  expect(screen.getByTestId("nav")).toHaveTextContent('Browse')
+})

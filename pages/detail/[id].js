@@ -15,7 +15,6 @@ export default function ItemDetail(props) {
     let hourApi = dataApi.slice(11, 13)
     let minutesApi = dataApi.slice(14, 16)
     const time = `${monthApi} ${dayApi}, ${yearApi} ${hourApi}:${minutesApi}`
-    // console.log(props);
     let countDownDate = new Date(time).getTime();
     let x = setInterval(function () {
         let now = new Date().getTime();

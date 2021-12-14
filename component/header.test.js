@@ -4,7 +4,7 @@ import Header from "./Header";
 import {AuthProvider} from "../contexts/auth"
 
 
-test('NameConsumer shows default value', () => {
+test('Header', () => {
   render(<AuthProvider/>)
   render(<Header />)
   

@@ -1,34 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../contexts/auth";
 import useItems from "../hooks/useItems";
 import axios from "axios";
 export default function ItemForm() {
   const [imageSelected, setImageSelected] = useState("");
-  // const [imageUrl, setImageUrl] = useState("")
-
-  // setState(state => [...state, state])
-  // function fileChangedHandler(e){
-  //     // const file = e.target.files[0]
-  //     const formDate = new FormData()
-  //     formDate.append("file",imageSelected)
-  //     formDate.append("upload_preset","ybngoy1d")
-  //     Axios.post("https://api.cloudinary.com/v1_1/duhbljjb2/image/upload",formDate).then((response)=>{
-  //         console.log(response);
-  //     })
-
-  //     setImageSelected((prevState)=>({...prevState, ...file}))
-
-  //     // setState(state => [...state, file])
-  // }
-  // console.log(image);
-
   const { user, login } = useAuth();
-
   const { loading, resources, createResource } = useItems();
-  // useEffect(() => {
-  //     login("admin","auction123")
-
-  // }, [login]);
 
   async function handleCreateItem(e) {
     e.preventDefault();
@@ -64,10 +41,6 @@ export default function ItemForm() {
         }
         console.log(response.data.secure_url);
       });
-
-    // setImageUrl((prevState)=>({...prevState, ...response.data.secure_url}))
-
-    // console.log(user);
   }
 
   return (

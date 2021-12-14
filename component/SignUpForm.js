@@ -3,7 +3,7 @@ import React from "react"
 import { useAuth } from "../contexts/auth";
 import useUsers from "../hooks/useUsers";
 
-function SignUp() {
+function SignUpForm() {
     const { createResource } = useUsers();
 
 
@@ -103,7 +103,7 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default SignUpForm
             // <form onSubmit={handleSignUp}>
             //     {/* csrf_token */}
             //     <input type="hidden" name="remember" value="true" />

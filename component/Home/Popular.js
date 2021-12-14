@@ -25,7 +25,8 @@ export default function Popular() {
             {resources?.map((item) => {
               if (
                 item.favorite_counter >= 20 &&
-                item.is_sold == false 
+                item.is_sold == false &&
+                item.is_expirated == false
               ) {
                 let newDate = new Date();
                 let dayNow = newDate.getDate(); // Current Day
@@ -49,7 +50,7 @@ export default function Popular() {
                       <div className="">
                         <h3 className="text-sm ">
                           <Link
-                            href="/detail/[id].js"
+                            href="/detail/[id]"
                             as={`/detail/${item.id}`}
                           >
                             <a>
@@ -57,7 +58,7 @@ export default function Popular() {
                             </a>
                           </Link>
                         </h3>
-                        {console.log(hourNow)}
+                        {/* {console.log(hourNow)} */}
                         {/* 2021-12-18T12:00:00Z*/}
                         <p className="mt-1 text-sm font-semibold text-yellow-600">
                           {" "}

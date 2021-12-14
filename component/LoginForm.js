@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useAuth } from "../contexts/auth"
-import Main from "./main";
+import HomeH from "./Home/HomeH";
+// import Main from "./main";
 
 export default function LoginForm() {
     const { login, user } = useAuth();
@@ -21,7 +22,7 @@ export default function LoginForm() {
             {
                 (user) ? (
                     <>
-                        <Main />
+                        <HomeH />
                     </>
 
                 ) : (

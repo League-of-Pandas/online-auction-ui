@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/auth";
 import useItems from "../hooks/useItems";
-// import Footer from "./Footer";
-// import Header from "./Header";
 import axios from "axios";
 export default function ItemForm() {
   const [imageSelected, setImageSelected] = useState("");
@@ -75,31 +73,25 @@ export default function ItemForm() {
   return (
     <>
       {/* <Header /> */}
-      
-      <div className="">
-        {/* <div className="md:grid md:grid-cols-3 md:gap-6"> */}
-        {/* <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Add Product
-              </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                This information will be displayed publicly so be careful what
-                you share.
-              </p>
-            </div>
-          </div> */}
-        <div className="mt-5 md:mt-0 md:col-span-2">
-          <form onSubmit={handleCreateItem}>
+
+      <div className="container flex flex-col w-full mx-auto">
+          <div className="mx-auto my-4">
+            <h3 className="mx-auto text-2xl font-semibold leading-6 text-gray-900">
+            Add Product
+            </h3>
+            <p className="mx-auto my-4 text-sm text-gray-700">
+            This information will be displayed publicly so be careful what you
+            share.
+            </p>
+          </div>
+        <div >
+          <form onSubmit={handleCreateItem} className="flex items-center justify-center mx-auto mb-8">
             <div className="shadow sm:rounded-md sm:overflow-hidden">
-              <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-2">
-                    <div className="col-span-6 sm:col-span-4">
-                      <label
-                        htmlFor="title"
-                        className="text-gray-700 "
-                      >
+              <div className="px-4 py-5 space-y-6 bg-indigo-100 sm:p-6">
+                <div className="">
+                  <div className="py-2">
+                    <div className="">
+                      <label htmlFor="title" className="">
                         Title
                       </label>
                       <input
@@ -107,16 +99,15 @@ export default function ItemForm() {
                         name="title"
                         id="title"
                         // autoComplete="email"
-                        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <label
                     htmlFor="description"
-                    className="block text-sm font-medium text-gray-700"
+                    className=""
                   >
                     Description
                   </label>
@@ -125,7 +116,7 @@ export default function ItemForm() {
                       id="description"
                       name="description"
                       rows={3}
-                      className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       placeholder="detail of your item"
                       defaultValue={""}
                     />
@@ -135,7 +126,7 @@ export default function ItemForm() {
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="category"
-                    className="block text-sm font-medium text-gray-700"
+                    className=""
                   >
                     Category
                   </label>
@@ -152,7 +143,7 @@ export default function ItemForm() {
                 </div>
                 {/* -------Images ------- */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="">
                     Images
                   </label>
                   <div className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
@@ -171,10 +162,10 @@ export default function ItemForm() {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <div className="flex text-sm text-gray-600">
+                      <div className="">
                         <label
                           htmlFor="image-upload"
-                          className="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                          className="relative font-medium text-indigo-600 rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                         >
                           <span>Upload a image</span>
                           <input
@@ -198,7 +189,7 @@ export default function ItemForm() {
                 <div>
                   <label
                     htmlFor="price"
-                    className="block text-sm font-medium text-gray-700"
+                    className=""
                   >
                     Price
                   </label>
@@ -218,7 +209,7 @@ export default function ItemForm() {
                 <div>
                   <label
                     htmlFor="bid_increment"
-                    className="block text-sm font-medium text-gray-700"
+                    className=""
                   >
                     Min Bid
                   </label>
@@ -239,7 +230,7 @@ export default function ItemForm() {
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
+                        className=""
                       >
                         Start Time
                       </label>
@@ -259,7 +250,7 @@ export default function ItemForm() {
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
+                        className=""
                       >
                         End Time
                       </label>
@@ -279,7 +270,7 @@ export default function ItemForm() {
                     <div className="col-span-6 sm:col-span-4">
                       <label
                         htmlFor="location"
-                        className="block text-sm font-medium text-gray-700"
+                        className=""
                       >
                         Location
                       </label>
@@ -308,16 +299,7 @@ export default function ItemForm() {
           </form>
         </div>
       </div>
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-gray-200" />
-        </div>
-      </div>
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-gray-200" />
-        </div>
-      </div>
+      
       {/* <Footer /> */}
     </>
   );

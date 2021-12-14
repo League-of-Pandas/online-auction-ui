@@ -11,7 +11,7 @@ const AuthContext = createContext();
 
 export function useAuth() {
     const auth = useContext(AuthContext)
-    if (!auth) throw new Error("Please use this context in a descendent of the AuthProvider")
+    if (!auth) return("Please use this context in a descendent of the AuthProvider")
     // console.log(auth)
     return auth
 }

@@ -6,7 +6,6 @@ export default function ItemDetail(props) {
     const [timeLeft, setTimeLeft] = useState(null)
     const [itemProps, setItemProps] = useState({})
     const {updateResource} = useItems()
-    const {login}= AuthProvider()
     let dataApi = String(props.data.end_date)
     let yearApi = dataApi.slice(0, 4)
     let monthApi = dataApi.slice(5, 7)
@@ -14,7 +13,6 @@ export default function ItemDetail(props) {
     let hourApi = dataApi.slice(11, 13)
     let minutesApi = dataApi.slice(14, 16)
     const time = `${monthApi} ${dayApi}, ${yearApi} ${hourApi}:${minutesApi}`
-    // console.log(props);
     let countDownDate = new Date(time).getTime();
     let x = setInterval(function () {
         let now = new Date().getTime();

@@ -12,14 +12,7 @@ export default function useItems() {
     const { data, error, mutate } = useSWR([apiUrl, tokens], fetchResource);
 
     async function fetchResource(url) {
-
-        // if (!tokens) {
-        //     return;
-        // }
-
         try {
-            // const response = await axios.get(url, config());
-
             const response = await axios.get(url);
 
             return response.data;
@@ -71,16 +64,8 @@ export default function useItems() {
     }
 
     async function handleError(error) {
-        console.error(error);
-        // if (error) {
-        //     if (error.response.status === 401) {
-        //         const ref = jwt.decode(tokens.refresh)
-        //         const response = await axios.post(tokenRefreshURL, { ref })
-        //         tokens.access = response.data.access
-        //     }
-        //     logout()
-        // }
         logout()
+        return(error)
     }
 
     return {
@@ -94,8 +79,4 @@ export default function useItems() {
     }
 }
 
-/* STRETCH
-This approach works, but it's not very snappy for the user.
-Check the SWR docs to see if you can "optomistically" render updated state while the API response is pending.
-*/
 

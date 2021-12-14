@@ -62,7 +62,6 @@ export default function Header() {
                   Register
                 </button>
               </Link>
-              {/* {console.log(user)} */}
             </>
           )}
         </div>

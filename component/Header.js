@@ -1,10 +1,20 @@
 import Link from "next/link"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/auth"
-// import 
-export default function Header() {
+import { useRouter } from "next/router";
+
+export default function Header({action = '/Browse'}) {
   const { user, logout } = useAuth()
-  // const router = useRouter()
+  const router = useRouter()
+  const [query, setQuery] = useState('browse')
+
+  // const handleParam = setValue => e => setValue(e.target.value)
+  // function routing(){
+  //   router.push({
+  //     pathname: action,
+  //     query: {q: query},})
+  // }
+  
   return (
     <header className="" data-testid="nav">
       <nav className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-gray-700 bg-white text-md md:py-0">
@@ -25,6 +35,9 @@ export default function Header() {
               Browse
             </a>
           </Link>
+          {/* <form action={action} onSubmit={routing}>
+          <input type="submit" name='q' value={query} onChange={handleParam(setQuery)} onChange={handleParam(setQuery)}/> */}
+          {/* </form> */}
           <Link href="#">
             <a
 
@@ -41,6 +54,15 @@ export default function Header() {
               Contact Us
             </a>
           </Link>
+          <Link href="/SearchResult">
+            <a
+
+              className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500"
+            >
+             
+            </a>
+          </Link>
+
         </div>
         <div className="flex items-center justify-between mx-2">
 

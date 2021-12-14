@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react"
 import { useAuth } from "../contexts/auth";
-import bcrypt from 'bcryptjs'
 import useUsers from "../hooks/useUsers";
 
 function SignUp() {

@@ -4,17 +4,16 @@ import Main from "./main";
 
 export default function LoginForm() {
     const { login, user } = useAuth();
-    const [user, setUsername] = useState('')
-    const [pass, setPassword] = useState('')
-
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     function handlelogin(e) {
         e.preventDefault()
         const username = e.target.username.value
         const password = e.target.password.value
-        // setUsername(user => [...user, username])
-        // setPassword(pass => [...pass, password])
+        setUsername(username => [...username, username])
+        setPassword(password => [...password, password])
         login(username, password)
-        console.log('user info',user);
+        // console.log(user);
     }
 
     return (

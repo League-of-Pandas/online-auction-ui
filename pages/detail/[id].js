@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { AuthProvider } from '../../contexts/auth';
+import { useAuth } from '../../contexts/auth';
 import useItems from '../../hooks/useItems';
 export default function ItemDetail(props) {
+    // const {user} = useAuth()
+    // console.log(props);
     const [timeLeft, setTimeLeft] = useState(null)
     const [itemProps, setItemProps] = useState({})
     const {updateResource} = useItems()
@@ -38,7 +40,7 @@ export default function ItemDetail(props) {
             highest_bidding: totelPrice,
             bidder_counter: props.data.bidder_counter + 1,
         }
-        console.log(body)
+        // console.log(body)
         updateResource(body,props.data.id)
     }
     return (
@@ -117,14 +119,13 @@ export default function ItemDetail(props) {
 export async function getServerSideProps(context) {
     const context_id = context.query.id
     const response = await axios.get(process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + context_id);
-
     // console.log("getServerSideProps", response.data)
     // console.log(context.query);
     const data = response.data
     return {
         props: {
             data: data
-
+            
         }
     }
 

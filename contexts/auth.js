@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 
@@ -17,6 +17,25 @@ export function useAuth() {
 }
 
 export function AuthProvider(props) {
+    useEffect(()=>{
+        let token = JSON.parse(localStorage.getItem('token'))
+        if (token){
+            const decodeAccess = jwt.decode(token.access);
+            // console.log(decodeAccess);
+            const newState = {
+                tokens:token,
+                user:{
+                    username: decodeAccess.username,
+                    email: decodeAccess.email,
+                    id: decodeAccess.user_id,
+                }
+            }
+            // setState(newState)
+            setState((prevState)=>({...prevState, ...newState}))
+            // 
+        }
+        
+    },[])
    const [state,setState] = useState({
        tokens: null,
        user:null,
@@ -29,7 +48,7 @@ export function AuthProvider(props) {
             // console.log(response);
             const decodeAccess = jwt.decode(response.data.access);
             // console.log(decodeAccess);
-            
+            localStorage.setItem('token', JSON.stringify(response.data))
             const newState = {
                 tokens:response.data,
                 user:{
@@ -48,6 +67,7 @@ export function AuthProvider(props) {
         }
     }
     function logout() {
+        localStorage.clear()
         const newState = {
             tokens:null,
             user:null

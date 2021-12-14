@@ -5,7 +5,7 @@ export default function Header() {
   const { user, logout } = useAuth();
   return (
     <header className="" >
-      <nav data-testid="nav" className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-gray-700 bg-white text-md md:py-0">
+      <nav id="nav" className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-gray-700 bg-white text-md md:py-0">
         <div className="flex flex-row items-center space-x-1">
           <img
             className="w-8 h-8 mr-2"
@@ -62,7 +62,6 @@ export default function Header() {
                   Register
                 </button>
               </Link>
-              {/* {console.log(user)} */}
             </>
           )}
         </div>

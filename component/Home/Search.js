@@ -2,7 +2,7 @@ import { useState } from "react";
 import {useRouter} from 'next/router';
 
 
-export default function Search({action='/SearchResult'}){
+export default function Search({action='/searchResult'}){
 
   const router = useRouter()
   const [query, setQuery] = useState('')
@@ -19,7 +19,7 @@ function routing(e){
 
 
             
-       <form action={action} onSubmit={routing} className="flex m-2 justify-around">
+       <form action={action} onSubmit={routing} className="flex justify-around m-2">
             <div className="relative rounded-md shadow-sm">
               <input type="text" name="search" id="item" className="w-full p-2 my-2 text-lg rounded-lg" placeholder="Search for lots ..." required />
             </div>

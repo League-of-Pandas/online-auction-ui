@@ -5,6 +5,14 @@ import Link from "next/link";
 export default function Popular() {
   Moment.locale("en");
   // const [arr,setArr] = useState([])
+  function handelFavorite(e) {
+    
+    
+  }
+  function handelBidding(e) {
+    
+    
+  }
   const { resources, loading } = useItems();
   if (loading) {
     // console.log(loading);
@@ -68,7 +76,11 @@ export default function Popular() {
                           price: ${item.init_price}
                         </p>
                       </div>
-                      <button className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
+
+                      <div>
+                      <button onClick={handelFavorite} className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
+                      <button onClick={handelBidding} className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Bidding</button>
+                      </div>
                     </div>
                   </div>
                 );

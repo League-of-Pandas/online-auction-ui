@@ -1,4 +1,4 @@
-import useResource from "../hooks/useItems";
+import useResource from "../../hooks/useItems";
 import { useState } from "react";
 import { useRouter } from 'next/router';
 import Moment from 'moment';
@@ -126,7 +126,7 @@ export default function SearchResult(){
                         <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
                 <button className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
-                        </div> </div></div> )}):<h2 className='text-xl text-center my-16'>No Matching Items</h2>}
+                        </div> </div></div> )}):<h2 className='my-16 text-xl text-center'>No Matching Items</h2>}
       </>
     )
     

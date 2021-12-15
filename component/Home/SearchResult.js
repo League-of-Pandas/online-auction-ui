@@ -1,4 +1,4 @@
-import useResource from "../hooks/useItems";
+import useResource from "../../hooks/useItems";
 import { useState } from "react";
 import { useRouter } from 'next/router';
 import Moment from 'moment';
@@ -81,18 +81,23 @@ export default function SearchResult(){
         </select>
       </div>
     {arr.length?result.map((item,key)=>{
-        console.log(item);
-        let newDate = new Date()
-        let dayNow = newDate.getDate()      // Current Day
-        let hourNow = newDate.getHours()    // Current Hour
-        let minateNow = newDate.getMinutes()
-        var dt = item.end_date;             // End Date from API
-        var day = Moment(dt).format('D')
-        day = day - dayNow                  // rest of Day
-        var hours = Moment(dt).format('H')
-        hours = Math.abs(hours - hourNow)
-        var minate = Moment(dt).format('M')
-        minate = Math.abs(minate - minateNow)    // rest of Hour
+       
+       let newDate = new Date()
+       let year = newDate.getFullYear();
+       let month = newDate.getMonth() + 1;
+       let day = newDate.getDate();
+       let hour = newDate.getHours()
+       let minutes = newDate.getMinutes()
+       
+       let dataApi = String(item.end_date)
+       let yearApi = dataApi.slice(0, 4)
+       let monthApi = dataApi.slice(5, 7)
+       let dayApi = parseInt(dataApi.slice(8, 10))
+       let totalDay = Math.abs(dayApi - day)
+       let hourApi = dataApi.slice(11, 13)
+       let totalHour = Math.abs(hourApi - hour)
+       let minutesApi = dataApi.slice(14, 16)
+       let totalminute = Math.abs(minutesApi - minutes)    // rest of Hour
         return (
 
           <div key={`${key}`} className="container">
@@ -114,9 +119,15 @@ export default function SearchResult(){
                 </h4>
                 <h4 className="text-sm">
                   {
-                    (item.is_sold == false && item.is_expirated == false) ? (
+                    (item.is_sold == false && (
+                      yearApi <= year ||
+                      monthApi <= month ||
+                      dayApi <= day ||
+                      (dayApi === day && hourApi <= hour) ||
+                      (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
+                    )) ? (
                       <p key={item.id}>
-                        End Date:{day} Days - {hours} Hours - {minate} Minate
+                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minate
                       </p>
                     ) :
                       (
@@ -126,7 +137,7 @@ export default function SearchResult(){
                         <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
                 <button id='button-bid' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
-                        </div> </div></div> )}):<h2 className='text-xl text-center my-16'>No Matching Items</h2>}
+                        </div> </div></div> )}):<h2 className='my-16 text-xl text-center'>No Matching Items</h2>}
       </>
     )
     

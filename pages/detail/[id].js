@@ -1,13 +1,37 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useEffect } from 'react/cjs/react.development';
 import { useAuth } from '../../contexts/auth';
+import useBidding from '../../hooks/useBidding';
 import useItems from '../../hooks/useItems';
 export default function ItemDetail(props) {
-    // const {user} = useAuth()
-    // console.log(props);
-    const [timeLeft, setTimeLeft] = useState(null)
+    const { user } = useAuth()
     const [itemProps, setItemProps] = useState({})
-    const {updateResource} = useItems()
+
+    // const [userA,userASet]=useState({})
+    // userASet(userA)
+    // console.log(user);
+    // console.log(props);
+    // const {resources} = useItems()
+    const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + props.data.id + "/"
+    // console.log(apiUrl);
+
+    //     useEffect(()=>{
+    //     axios.get(apiUrl).then((response)=>{
+    //         console.log(response.data);
+    //         // setItemProps(response.data)
+    //     })
+    //    },[])
+    //    console.log(itemProps);
+    const [timeLeft, setTimeLeft] = useState(null);
+    // const apiUrlUser = process.env.NEXT_PUBLIC_RESOURCE_URLS + user.id+ "/"
+
+    // axios.get(apiUrlUser).then((res)=>{
+    //     console.log(res);
+    // })
+    const { updateResource } = useItems()
+    const { createResource } = useBidding()
+
     let dataApi = String(props.data.end_date)
     let yearApi = dataApi.slice(0, 4)
     let monthApi = dataApi.slice(5, 7)
@@ -32,45 +56,98 @@ export default function ItemDetail(props) {
     }, 1000);
     let totelPrice = props.data.init_price
     function handelBidding(e) {
-        e.preventDefault()
+        // e.preventDefault()
         let bidding = parseInt(e.target.bidding.value)
         totelPrice += bidding
         const url = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + props.data.id + "/";
-        let body={
+        let body = {
             highest_bidding: totelPrice,
             bidder_counter: props.data.bidder_counter + 1,
         }
+        const biddingBody = {
+            user: user.id,
+            product: props.data.id,
+        }
         // console.log(body)
-        updateResource(body,props.data.id)
+        createResource(biddingBody)
+        updateResource(body, props.data.id)
     }
+    
     return (
 
         <div className='w-screen'>
             <p className='mt-20 text-3xl text-center'>{props.data.item_name}</p>
 
-            <div className='flex justify-around w-11/12 m-auto mt-10 border-2'>
+            <div className='flex justify-around w-11/12 p-4 m-auto mt-10 border-2 rounded-lg'>
                 <section className=''>
-                    <img className='object-contain m-auto' src={props.data.image} alt='item' />
+                    <img className='object-contain m-auto border-2 rounded-lg shadow-lg' src={props.data.image} alt='item' />
                 </section>
                 <section className='justify-between text-center'>
                     <div>
-                        <p>This Auction Ends In:</p>
-                        <p>{timeLeft}</p>
+                        <p className='text-gray-600'>This Auction Ends In:</p>
+                        <p className='text-gray-600'>{timeLeft}</p>
                     </div>
                     <div>
-                        <form onSubmit={(e)=>handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
-                            <div className="flex items-center flex-1 w-0">
-                                <input required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="font-medium text-indigo-600 border-2 hover:text-indigo-500 border-neutral-900" />
-                            </div>
-                            <div className="flex-shrink-0 ml-4">
-                                <button id='submit-bid' type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    SUBMIT
-                                </button>
-                            </div>
-                        </form>
+                        {
+                            (user) ? (
+                                ((user.id === props.data.owner)) ? (
+                                    <>
+                                        <div className="flex flex-col items-center flex-1 w-full p-2">
+                                            <div className="w-full p-2 font-black text-indigo-600">Totle Price </div>
+                                            <div className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" >
+                                                {props.data.highest_bidding}
+                                            </div>
+                                            <div className="w-full p-2 font-black text-indigo-600">Counter Bidders </div>
+                                            <div className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" >
+                                                {props.data.bidder_counter}
+                                            </div>
+                                        </div>
+                                        <div className="flex-shrink-0 ml-4">
+                                            <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500" disabled>
+                                                Bidding
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                    
+                                    <form onSubmit={(e) => handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <div className="flex flex-col items-center flex-1 w-full p-2">
+                                            
+                                            <input required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
+                                        </div>
+                                        <div className="flex-shrink-0 ml-4">
+                                            <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                Bidding
+                                            </button>
+                                        </div>
+                                    </form>
+                                    </>
+                                )
+                                   
+
+
+                            ) :
+                                (
+                                    <>
+                                    {/* className="font-medium text-indigo-600 hover:text-indigo-500" */}
+                                    <form onSubmit={(e) => handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <div className="flex flex-col items-center flex-1 w-full p-2">
+                                            <label className="w-full p-2 font-black text-indigo-600">To Bid on Product Please Login</label>
+                                            <input required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
+                                        </div>
+                                        <div className="flex-shrink-0 ml-4">
+                                            <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500" disabled>
+                                                Bidding
+                                            </button>
+                                        </div>
+                                    </form>
+                                </>
+                                )
+                        }
                     </div>
-                
-                    
+
+
                 </section>
             </div>
 
@@ -105,7 +182,16 @@ export default function ItemDetail(props) {
                                 <dt className="text-sm font-medium text-gray-500"> Bid Increment</dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">$ {props.data.bid_increment}</dd>
                             </div>
-                         
+                            <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt className="text-sm font-medium text-gray-500">Bidder Counter</dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{props.data.bidder_counter}
+                                </dd>
+                            </div>
+                            <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt className="text-sm font-medium text-gray-500"> Owner</dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"> {props.data.owner}</dd>
+                            </div>
+
                         </dl>
                     </div>
                 </div>
@@ -113,7 +199,6 @@ export default function ItemDetail(props) {
         </div>
     )
 }
-
 
 
 export async function getServerSideProps(context) {
@@ -125,7 +210,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             data: data
-            
+
         }
     }
 

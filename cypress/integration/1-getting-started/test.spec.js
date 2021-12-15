@@ -121,9 +121,32 @@ describe('item_details',()=>{
     })
 })
 
+describe('logout',()=>{
+    it('test_logout',()=>{
+        cy.visit('http://localhost:3000/');
+        cy.get('.item-center').click();
+        cy.get('#login-button').click();
+        cy.get('#username').type('tasneem');
+        cy.get('#password').type('whatever..1');
+        cy.get('#sign-in').click();
+        cy.get('#form-login').submit();
+        cy.get('#login-button').click();
+        cy.get('.item-center').dblclick();
+})
+})
 
-
-
+describe('profile',()=>{
+    it('test_profile',()=>{
+cy.visit('http://localhost:3000/#');
+cy.get('.ease-in-out').click();
+cy.get('#login-button').click();
+cy.get('#username').type('tasneem');
+cy.get('#password').type('whatever..1');
+cy.get('#sign-in').click();
+cy.get('#form-login').submit();
+cy.get('.py-2:nth-child(3)').click();
+})
+})
 
 
 

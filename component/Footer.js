@@ -1,10 +1,11 @@
+
 export default function Footer() {
   return(
     <footer data-testid="footer" className="static bottom-0 footer">
       <div className="flex justify-around">
         <div className="flex-col bg-yellow-300">
+          
           <div>contact us</div>
-          <div>world</div>
           <div>vision</div>
         </div>
         <div className="flex-col bg-yellow-300">
@@ -19,6 +20,7 @@ export default function Footer() {
         </div>
       </div>
       {/* contact us */}
+      
     </footer>
   )
 }

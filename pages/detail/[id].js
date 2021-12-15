@@ -111,13 +111,13 @@ export default function ItemDetail(props) {
                                 ) : (
                                     <>
                                     
-                                    <form onSubmit={(e) => handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
+                                    <form onSubmit={(e) => handelBidding(e)}  className="font-medium text-indigo-600 hover:text-indigo-500">
                                         <div className="flex flex-col items-center flex-1 w-full p-2">
                                             
-                                            <input required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
+                                            <input id='bid-input' required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
                                         </div>
                                         <div className="flex-shrink-0 ml-4">
-                                            <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                            <button type='submit' id='submit-bid' className="font-medium text-indigo-600 hover:text-indigo-500">
                                                 Bidding
                                             </button>
                                         </div>

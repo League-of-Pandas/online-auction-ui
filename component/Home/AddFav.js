@@ -1,4 +1,6 @@
 import useItems from "../../hooks/useItems";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function AddFav({item}) {
     const { updateResource } = useItems()
@@ -14,7 +16,10 @@ export default function AddFav({item}) {
 
     }
     return(
-        <button onClick={handelFavorite} className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
+        // <>
+        <FontAwesomeIcon onClick={handelFavorite} icon={faStar} className="cursor-pointer margin hover:text-yellow-400 w-36"></FontAwesomeIcon>
+        
+        // <button onClick={handelFavorite} className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
 
     )
 }

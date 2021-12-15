@@ -4,6 +4,7 @@ import Link from "next/link";
 import AddFav from "./AddFav";
 import { useState, useEffect } from "react";
 
+
 export default function Popular() {
   Moment.locale("en");
   // const [arr,setArr] = useState([])
@@ -97,7 +98,7 @@ export default function Popular() {
                             href="/detail/[id]"
                             as={`/detail/${item.id}`}
                           >
-                            <a>
+                            <a id='item-name'>
                               {item.item_name}
                             </a>
                           </Link>
@@ -120,7 +121,9 @@ export default function Popular() {
                           href="/detail/[id]"
                           as={`/detail/${item.id}`}
                         >
-                          <button className="p-2 mx-2 font-bold text-white bg-yellow-600 rounded-lg text-md hover:bg-yellow-200 hover:text-black">
+                          
+                          {/* <FontAwesomeIcon icon={faStar} className="cursor-pointer margin hover:text-yellow-400"></FontAwesomeIcon> */}
+                          <button className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">
                             Bidding
                           </button>
                         </Link>
@@ -138,3 +141,7 @@ export default function Popular() {
   }
 }
 
+{/* <div className="flex items-center justify-between">
+<FontAwesomeIcon icon={faStar} className="cursor-pointer margin hover:text-yellow-400"></FontAwesomeIcon>
+<button className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">Bidding</button>
+</div>  */}

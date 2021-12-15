@@ -28,14 +28,14 @@ describe('search',()=>{
 // cy.get('#item').click();
 cy.get('#item').type('iPhone');
 cy.get('.m-2').submit();
-cy.url().should('contains','/SearchResult?q=iPhone')
+cy.url().should('contains','/searchResult?q=iPhone')
 })})
 
-describe('item_details',()=>{
-    it('test_item_details',()=>{ 
-        cy.get('#button-bid').click();
-        cy.url().should('contains', '/detail/1');
-})})
+// describe('item_details',()=>{
+//     it('test_item_details',()=>{ 
+//         cy.get('#bid-button').click();
+//         cy.url().should('contains', '/detail/1');
+// })})
 
 describe('render_signUp',()=>{
     it('test_render_signUp',()=>{
@@ -70,31 +70,28 @@ describe('render_login',()=>{
     })
 })
 
-describe('add_item',()=>{
-    it('test_add_item',()=>{
-        cy.get('#add-item-button').click();
-        cy.url().should("contains","/itemForm")
-        cy.get('#title').type('car')
-        cy.get('#description').type('about the car')
-        cy.get('#category').type('Vehicles')
-        cy.get('#image-upload').attachFile('assets/jewel.jpg')
-        cy.get('#price').type(100)
-        cy.get('#bid_increment').type(10)
-        cy.get('#start-time').type('2020-06-01T08:30')
-        cy.get('#end-time').type('2021-09-01T08:30')
-        cy.get('#location').type('Amman')
-        cy.get('#save-item').click()
-        cy.url().should("contains","/itemForm")
-    })
-})
+// describe('add_item',()=>{
+//     it('test_add_item',()=>{
+//         cy.get('#add-item-button').click();
+//         cy.url().should("contains","/itemForm")
+//         cy.get('#title').type('car')
+//         cy.get('#description').type('about the car')
+//         cy.get('#category').type('Vehicles')
+//         cy.get('#image-upload').attachFile('assets/jewel.jpg')
+//         cy.get('#price').type(100)
+//         cy.get('#bid_increment').type(10)
+//         cy.get('#start-time').type('2020-06-01T08:30')
+//         cy.get('#end-time').type('2021-09-01T08:30')
+//         cy.get('#location').type('Amman')
+//         cy.get('#save-item').click()
+//         cy.url().should("contains","/itemForm")
+//     })
+// })
 
-describe('add_item',()=>{
-    it('test_add_item',()=>{
-        cy.get('#submit-bid').click();
-        cy.url().should("contains","/itemForm/detail/1")
 
-    })
-})
+
+
+
 
 
 

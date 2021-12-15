@@ -9,7 +9,7 @@ export default function SearchResult(){
     const router = useRouter()
   console.log(router.query);
   let search = Object.values(router.query)[0];
-  let new_name = search.replace(/ /g,'')
+  // let new_name = search.replace(/ /g,'')
 
   const CATEGORY_CHOICES = [
     ("All", "All"),
@@ -27,7 +27,7 @@ export default function SearchResult(){
         function filterItems (){
           for(let i=0; i<resources?.length; i++){
             let replaced_name = resources[i].item_name.replace(/ /g,'')
-            if(replaced_name.includes(new_name)){
+            if(replaced_name.includes(search)){
               console.log(resources[i].item_name);
               console.log(resources[i]);
               arr.push(resources[i])
@@ -135,7 +135,7 @@ export default function SearchResult(){
                           End Date: Expired
                         </p> ) }</h4>
                         <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
-                <button id='button-bid' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
+                <button id='bid-button' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
                         </div> </div></div> )}):<h2 className='my-16 text-xl text-center'>No Matching Items</h2>}
       </>

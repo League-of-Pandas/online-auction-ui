@@ -1,25 +1,47 @@
 import useItems from "../../hooks/useItems";
 import Moment from "moment";
 import Link from "next/link";
+import AddFav from "./AddFav";
+import { useState, useEffect } from "react";
 
 export default function Popular() {
   Moment.locale("en");
   // const [arr,setArr] = useState([])
-  function handelFavorite(e) {
-    
-    
-  }
-  function handelBidding(e) {
-    
-    
-  }
+
   const { resources, loading } = useItems();
+  // const [item,setItem]= useState()
+  // useEffect(()=>{
+
+  //   if (loading) {
+  //     console.log(loading);
+
+  //   }else{
+  //     setItem(resources)
+  //   }
+  //   console.log("useEffect");
+  // },[resources])
   if (loading) {
     // console.log(loading);
     return (
-      <>
-        <h1>LOADING</h1>
-      </>
+      <div className="bg-white ">
+        <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <h2 className="mb-10 text-2xl font-bold text-center">
+            POPULAR AUCTIONS
+          </h2>
+          <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            <div className="relative rounded-xl">
+              <div className="">
+
+                <img
+                  src="/loading-gif.gif"
+                  alt="LOADING"
+                  className="w-full h-48 rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   } else {
     return (
@@ -31,18 +53,33 @@ export default function Popular() {
           <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {/* -------- iTEMS -------- */}
             {resources?.map((item) => {
+              let newDate = new Date()
+              let year = newDate.getFullYear();
+              let month = newDate.getMonth() + 1;
+              let day = newDate.getDate();
+              let hour = newDate.getHours()
+              let minutes = newDate.getMinutes()
+              
+              let dataApi = String(item.end_date)
+              let yearApi = dataApi.slice(0, 4)
+              let monthApi = dataApi.slice(5, 7)
+              let dayApi = parseInt(dataApi.slice(8, 10))
+              let totalDay = Math.abs(dayApi - day)
+              let hourApi = dataApi.slice(11, 13)
+              let totalHour = Math.abs(hourApi - hour)
+              let minutesApi = dataApi.slice(14, 16)
+             
+
               if (
                 item.favorite_counter >= 20 &&
-                item.is_sold == false 
+                item.is_sold == false && (
+                  yearApi <= year ||
+                  monthApi <= month ||
+                  dayApi <= day ||
+                  (dayApi === day && hourApi <= hour) ||
+                  (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
+                )
               ) {
-                let newDate = new Date();
-                let dayNow = newDate.getDate(); // Current Day
-                let hourNow = newDate.getHours(); // Current Hour
-                var dt = item.end_data; // End Date from API
-                var day = Moment(dt).format("D");
-                day = day - dayNow; // rest of Day
-                var hours = Moment(dt).format("H");
-                hours = Math.abs(hours - hourNow); // rest of Hour
                 return (
                   // <p key={item.id}> {item.item_name}</p>
                   <div key={item.id} className="relative rounded-xl">
@@ -69,7 +106,7 @@ export default function Popular() {
                         {/* 2021-12-18T12:00:00Z*/}
                         <p className="mt-1 text-sm font-semibold text-yellow-600">
                           {" "}
-                          {day} Days - {hours} Hours
+                          {totalDay} Days - {totalHour} Hours
                         </p>
                         <p className="mt-1 mb-2 text-sm font-bold text-gray-800">
                           {" "}
@@ -78,8 +115,16 @@ export default function Popular() {
                       </div>
 
                       <div>
-                      <button onClick={handelFavorite} className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
-                      <button onClick={handelBidding} className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Bidding</button>
+                        <AddFav item={item} />
+                        <Link
+                          href="/detail/[id]"
+                          as={`/detail/${item.id}`}
+                        >
+                          <button className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">
+                            Bidding
+                          </button>
+                        </Link>
+
                       </div>
                     </div>
                   </div>

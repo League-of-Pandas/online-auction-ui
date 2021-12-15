@@ -17,6 +17,12 @@ export function useAuth() {
 }
 
 export function AuthProvider(props) {
+    const [state,setState] = useState({
+        tokens: null,
+        user:null,
+        login,
+        logout,
+    });
     useEffect(()=>{
         let token = JSON.parse(localStorage.getItem('token'))
         if (token){
@@ -36,12 +42,6 @@ export function AuthProvider(props) {
         }
         
     },[])
-   const [state,setState] = useState({
-       tokens: null,
-       user:null,
-       login,
-       logout,
-   });
     async function login(username,password) {
         
         try{

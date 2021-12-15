@@ -5,7 +5,8 @@ import Vision from "./Vision";
 import { useAuth } from "../../contexts/auth";
 import useItems from "../../hooks/useItems";
 
-export default function HomeH() {
+export default function Home() {
+
   const { user } = useAuth();
   const { loading, resources, updateResource } = useItems();
 

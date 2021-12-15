@@ -32,11 +32,14 @@ export default function Update() {
         let hourApi = dataApi.slice(11, 13)
         let minutesApi = dataApi.slice(14, 16)
         const time = `${monthApi} ${dayApi}, ${yearApi} ${hourApi}:${minutesApi}`
+        console.log("--------------------------");
+        console.log(item.item_name);
         console.log("year", yearApi, "-", year);
         console.log("month", monthApi, "-", month);
         console.log("day", dayApi, "-", day);
         console.log("hour", hourApi, "-", hour);
         console.log("minutes", minutesApi, "-", minutes);
+        console.log("--------------------------");
 
 
         if (

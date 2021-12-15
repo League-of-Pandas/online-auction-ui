@@ -18,12 +18,17 @@ export default function ItemDetail(props) {
 
     //     useEffect(()=>{
     //     axios.get(apiUrl).then((response)=>{
+    //         console.log(response.data);
     //         // setItemProps(response.data)
     //     })
-    //    })
+    //    },[])
     //    console.log(itemProps);
     const [timeLeft, setTimeLeft] = useState(null);
+    // const apiUrlUser = process.env.NEXT_PUBLIC_RESOURCE_URLS + user.id+ "/"
 
+    // axios.get(apiUrlUser).then((res)=>{
+    //     console.log(res);
+    // })
     const { updateResource } = useItems()
     const { createResource } = useBidding()
 
@@ -67,6 +72,7 @@ export default function ItemDetail(props) {
         createResource(biddingBody)
         updateResource(body, props.data.id)
     }
+    
     return (
 
         <div className='w-screen'>
@@ -194,7 +200,23 @@ export default function ItemDetail(props) {
     )
 }
 
-
+// export async function getStaticProps(context) {
+//     const context_id = context.query.id
+//     const response = await axios.get(process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + context_id);
+//     // console.log("getServerSideProps", response.data)
+//     // console.log(context.query);
+//     const data = response.data
+//     if (!data) {
+//       return {
+//         notFound: true,
+//       }
+//     }
+  
+//     return {
+//       props: { data }, // will be passed to the page component as props
+//     }
+//   }
+  
 
 export async function getServerSideProps(context) {
     const context_id = context.query.id

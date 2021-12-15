@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useAuth } from "../contexts/auth"
 import Home from "./Home/Home";
+import useUsers from "../hooks/useUsers";
 // import Main from "./main";
 
 export default function LoginForm() {
@@ -14,6 +15,7 @@ export default function LoginForm() {
         setUsername(username => [...username, username])
         setPassword(password => [...password, password])
         login(username, password)
+        
         
     }
 

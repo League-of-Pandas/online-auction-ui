@@ -5,10 +5,12 @@ import Moment from 'moment';
 import Link from "next/link";
 
 
-export default function SearchResult(){
-    const router = useRouter()
+export default function SearchResult() {
+  const router = useRouter()
   console.log(router.query);
   let search = Object.values(router.query)[0];
+  console.log(search);
+  const [query, setQuery] = useState('')
   // let new_name = search.replace(/ /g,'')
 
   const CATEGORY_CHOICES = [
@@ -21,54 +23,64 @@ export default function SearchResult(){
     ("Jewelry", "Jewelry"),
   ];
 
-    const { loading,resources } = useResource();
+  // useEffect(() => {
 
-        let arr = []
-        function filterItems (){
-          for(let i=0; i<resources?.length; i++){
-            let replaced_name = resources[i].item_name.replace(/ /g,'')
-            if(replaced_name.includes(search)){
-              console.log(resources[i].item_name);
-              console.log(resources[i]);
-              arr.push(resources[i])
-              console.log(arr);
-                return arr;
-              
-                
-          }}}
-          let filtered_items = filterItems()
-          const [result, setArr] = useState(filtered_items);
-          let newArr = []
-          async function filter(event) {
-            let category = event.target.value;
 
-            if (loading) {
-              console.log('loading',loading);
-            } else {
-        
-            if (category !== "All" && filtered_items) {
-              filtered_items.filter((item) => {
-                if (item.category === category) {
-                  newArr.push(item);
-                }
-                setArr(() => {
-                  return newArr;
-                });
-              });
-            } else {
-              setArr(() => {
-                return arr;
-              });
-            }
+  // }, [])
+
+  const { loading, resources } = useResource();
+
+  let arr = []
+  function filterItems() {
+    for (let i = 0; i < resources?.length; i++) {
+      let replaced_name = resources[i].item_name.replace(/ /g, '')
+
+      if (replaced_name.includes(search)) {
+
+        console.log(resources[i].item_name);
+        console.log(resources[i]);
+        arr.push(resources[i])
+        console.log(arr);
+        return arr;
+
+
+      }
+    }
+  }
+  let filtered_items = filterItems()
+  const [result, setArr] = useState(filtered_items);
+  // setArr(filtered_items)
+  let newArr = []
+  function filter(event) {
+    let category = event.target.value;
+
+    if (loading) {
+      console.log('loading', loading);
+    } else {
+
+      if (category !== "All" && filtered_items) {
+        filtered_items.filter((item) => {
+          if (item.category === category) {
+            newArr.push(item);
           }
-        }
-          
-          
-        
+          setArr(() => {
+            return newArr;
+          });
+        });
+      } else {
+        setArr(() => {
+          return arr;
+        });
+      }
+    }
+  }
 
-    return(
-        <>
-        <div className="container mx-8">
+
+
+
+  return (
+    <>
+      <div className="container mx-8">
         <label htmlFor="cars" className="mx-2 bg-white rounded-md focus:outline-none">Category</label>
         <select className="px-2 text-sm text-gray-700 " name="cars" id="cars" onChange={filter}>
           {CATEGORY_CHOICES.map((category, key) => {
@@ -80,24 +92,24 @@ export default function SearchResult(){
           })}
         </select>
       </div>
-    {arr.length?result.map((item,key)=>{
-       
-       let newDate = new Date()
-       let year = newDate.getFullYear();
-       let month = newDate.getMonth() + 1;
-       let day = newDate.getDate();
-       let hour = newDate.getHours()
-       let minutes = newDate.getMinutes()
-       
-       let dataApi = String(item.end_date)
-       let yearApi = dataApi.slice(0, 4)
-       let monthApi = dataApi.slice(5, 7)
-       let dayApi = parseInt(dataApi.slice(8, 10))
-       let totalDay = Math.abs(dayApi - day)
-       let hourApi = dataApi.slice(11, 13)
-       let totalHour = Math.abs(hourApi - hour)
-       let minutesApi = dataApi.slice(14, 16)
-       let totalminute = Math.abs(minutesApi - minutes)    // rest of Hour
+      {!loading ? result?.map((item, key) => {
+
+        let newDate = new Date()
+        let year = newDate.getFullYear();
+        let month = newDate.getMonth() + 1;
+        let day = newDate.getDate();
+        let hour = newDate.getHours()
+        let minutes = newDate.getMinutes()
+
+        let dataApi = String(item.end_date)
+        let yearApi = dataApi.slice(0, 4)
+        let monthApi = dataApi.slice(5, 7)
+        let dayApi = parseInt(dataApi.slice(8, 10))
+        let totalDay = Math.abs(dayApi - day)
+        let hourApi = dataApi.slice(11, 13)
+        let totalHour = Math.abs(hourApi - hour)
+        let minutesApi = dataApi.slice(14, 16)
+        let totalminute = Math.abs(minutesApi - minutes)    // rest of Hour
         return (
 
           <div key={`${key}`} className="container">
@@ -133,15 +145,16 @@ export default function SearchResult(){
                       (
                         <p key={item.id}>
                           End Date: Expired
-                        </p> ) }</h4>
-                        <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
-                <button id='bid-button' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
+                        </p>)}</h4>
+                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                  <button id='bid-button' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
-                        </div> </div></div> )}):<h2 className='my-16 text-xl text-center'>No Matching Items</h2>}
-      </>
-    )
-    
-    
-        
+              </div> </div></div>)
+      }) : <h2 className='my-16 text-xl text-center'>No Matching Items</h2>}
+    </>
+  )
+
+
+
 
 }

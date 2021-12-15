@@ -1,7 +1,8 @@
 import useItems from "../../hooks/useItems";
 import Moment from "moment";
 import Link from "next/link";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 export default function Popular() {
   Moment.locale("en");
   // const [arr,setArr] = useState([])
@@ -68,9 +69,9 @@ export default function Popular() {
                           price: ${item.init_price}
                         </p>
                       </div>
-                      <div className="flex justify-between">
-                          <button className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">Add to Favorite</button>
-                          <button className="p-2 mx-2 font-bold text-white bg-yellow-600 rounded-lg text-md hover:bg-yellow-200 hover:text-black">Bidding</button>
+                      <div className="flex items-center justify-between">
+                          <FontAwesomeIcon icon={faStar} className="cursor-pointer margin hover:text-yellow-400"></FontAwesomeIcon>
+                          <button className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">Bidding</button>
                       </div> 
                     </div>
                   </div>

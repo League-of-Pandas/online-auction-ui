@@ -81,7 +81,7 @@ const ItemDetail = (props) => {
 
             <div className='flex justify-around w-11/12 p-4 m-auto mt-10 border-2 rounded-lg'>
                 <section className=''>
-                    <img className='object-contain m-auto border-2 rounded-lg shadow-lg' src={itemProps.image} alt='item' />
+                    <img className='m-auto border-2 rounded-lg shadow-lg w-60 h-60 hobject-contain' src={itemProps.image} alt='item' />
                 </section>
                 <section className='justify-between text-center'>
                     <div>

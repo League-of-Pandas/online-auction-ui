@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Router } from "next/router";
 import React from "react"
 import { useAuth } from "../contexts/auth";
 import useUsers from "../hooks/useUsers";
@@ -14,11 +15,8 @@ function SignUpForm() {
             username: e.target.UserName.value,
             email: e.target.email.value
         }
-        console.log('register user',newUser);
 
         createResource(newUser)
-        // NEXT_PUBLIC_RESOURCE_URLS
-        // await axios.post(apiUrl, info);
     }
 
     return (
@@ -66,7 +64,7 @@ function SignUpForm() {
                                     placeholder="User Name"
                                 />
                             </div>
-                            
+
                             <div>
                                 <label htmlFor="password-register" className="sr-only">
                                     Password
@@ -83,7 +81,7 @@ function SignUpForm() {
                             </div>
                         </div>
 
-                        
+
 
                         <div className="bg-indigo-500 rounded-lg">
                             <button

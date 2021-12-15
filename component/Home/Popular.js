@@ -24,21 +24,18 @@ export default function Popular() {
   if (loading) {
     // console.log(loading);
     return (
-      <div className="bg-white ">
-        <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="mb-10 text-2xl font-bold text-center">
+      <div className="container mx-auto bg-white ">
+        <div className="max-w-2xl py-16 my-10 sm:py-24 sm:px-6 lg:max-w-7xl">
+          <h2 className="my-10 mt-8 text-2xl font-bold text-center">
             POPULAR AUCTIONS
           </h2>
           <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             <div className="relative rounded-xl">
-              <div className="">
-
                 <img
                   src="/loading-gif.gif"
                   alt="LOADING"
                   className="w-full h-48 rounded-xl"
                 />
-              </div>
             </div>
           </div>
         </div>
@@ -46,13 +43,11 @@ export default function Popular() {
     );
   } else {
     return (
-      <div className="bg-white ">
-        <div className="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="mb-10 text-2xl font-bold text-center">
+      <div className="container w-full mx-auto bg-white">
+          <h2 className="mb-10 text-2xl font-bold text-center ">
             POPULAR AUCTIONS
           </h2>
-          <div className="grid h-full grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-6">
-            {/* -------- iTEMS -------- */}
+          <div className="grid h-full grid-cols-1 mx-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-6">
             {resources?.map((item) => {
               let newDate = new Date()
               let year = newDate.getFullYear();
@@ -60,7 +55,6 @@ export default function Popular() {
               let day = newDate.getDate();
               let hour = newDate.getHours()
               let minutes = newDate.getMinutes()
-              
               let dataApi = String(item.end_date)
               let yearApi = dataApi.slice(0, 4)
               let monthApi = dataApi.slice(5, 7)
@@ -69,8 +63,6 @@ export default function Popular() {
               let hourApi = dataApi.slice(11, 13)
               let totalHour = Math.abs(hourApi - hour)
               let minutesApi = dataApi.slice(14, 16)
-             
-
               if (
                 item.favorite_counter >= 20 &&
                 item.is_sold == false && (
@@ -82,8 +74,7 @@ export default function Popular() {
                 )
               ) {
                 return (
-                  // <p key={item.id}> {item.item_name}</p>
-                  <div key={item.id} className="relative rounded-xl ">
+                  <div key={item.id} className="relative rounded-xl md:mx-4">
                     <div className="">
                       <img
                         src={item.image}
@@ -103,8 +94,6 @@ export default function Popular() {
                             </a>
                           </Link>
                         </h3>
-                        {/* {console.log(hourNow)} */}
-                        {/* 2021-12-18T12:00:00Z*/}
                         <p className="mt-1 text-sm font-semibold text-yellow-600">
                           {" "}
                           {totalDay} Days - {totalHour} Hours
@@ -115,14 +104,12 @@ export default function Popular() {
                         </p>
                       </div>
 
-                      <div className="flex justify-between">
+                      <div className="flex items-center justify-between">
                         <AddFav item={item} />
                         <Link
                           href="/detail/[id]"
                           as={`/detail/${item.id}`}
                         >
-                          
-                          {/* <FontAwesomeIcon icon={faStar} className="cursor-pointer margin hover:text-yellow-400"></FontAwesomeIcon> */}
                           <button className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">
                             Bidding
                           </button>
@@ -135,13 +122,7 @@ export default function Popular() {
               }
             })}
           </div>
-        </div>
       </div>
     );
   }
 }
-
-{/* <div className="flex items-center justify-between">
-<FontAwesomeIcon icon={faStar} className="cursor-pointer margin hover:text-yellow-400"></FontAwesomeIcon>
-<button className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">Bidding</button>
-</div>  */}

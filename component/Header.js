@@ -8,7 +8,7 @@ export default function Header() {
       <nav data-testid="nav" className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-gray-700 bg-white text-md md:py-0">
         <div className="flex flex-row items-center space-x-1">
           <img
-            className="w-8 h-8 mr-2"
+            className="mr-2 logo "
             src="https://i.pinimg.com/474x/7d/9c/1f/7d9c1fb259e09760c50fc9f336ffe21f.jpg"
             alt="Logo"
           />
@@ -27,11 +27,6 @@ export default function Header() {
               About Us
             </a>
           </Link>
-          <Link href="#">
-          <a className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500">
-              Contact Us
-            </a>
-          </Link>
           <Link href="/SearchResult">
             <a>
 
@@ -45,13 +40,13 @@ export default function Header() {
               <Link href="/">
                 <button
                   onClick={logout}
-                  className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent"
+                  className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none"
                 >
                   Logout
                 </button>
               </Link>
               <Link href="/itemForm">
-                <button id='add-item-button' className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">
+                <button id='add-item-button' className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none">
                   Add item
                 </button>
               </Link>
@@ -59,7 +54,7 @@ export default function Header() {
           ) : (
             <>
               <Link href="/loginForm">
-                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent" id='login-button'>
+                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none" id='login-button'>
                   Login
                 </button>
               </Link>

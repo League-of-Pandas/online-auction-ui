@@ -3,11 +3,21 @@ import { useAuth } from "../contexts/auth";
 import useItems from "../hooks/useItems";
 import axios from "axios";
 import Link from "next/link";
-export default function ItemForm() {
+import { useRouter } from "next/router";
+function format() {
+
+  var time = (new Date().toJSON());
+  var formatted = (time).toString().lastIndexOf(':')
+  return ((time).toString().slice(0, formatted))
+}
+export default function ItemForm({ action = `/browse` }) {
+  const router = useRouter()
   const [imageSelected, setImageSelected] = useState("");
   const [item, setItem] = useState({});
   const { user, login } = useAuth();
   const { loading, resources, createResource } = useItems();
+
+
 
   async function handleCreateItem(e) {
     e.preventDefault();
@@ -39,9 +49,15 @@ export default function ItemForm() {
           };
           setItem(newUser)
           console.log(newUser);
-          createResource(newUser);
+          createResource(newUser)
         }
       });
+    router.push({
+
+      pathname: action,
+    }
+    )
+    // `/detail/${item.id}`
   }
 
   return (
@@ -69,6 +85,7 @@ export default function ItemForm() {
                         Title
                       </label>
                       <input
+                        required
                         type="text"
                         name="title"
                         id="title"
@@ -146,6 +163,7 @@ export default function ItemForm() {
                         >
                           <span>Upload a image</span>
                           <input
+                            required
                             id="image-upload"
                             type="file"
                             className="sr-only"
@@ -172,6 +190,7 @@ export default function ItemForm() {
                   </label>
                   <div className="relative mt-1 rounded-md shadow-sm ">
                     <input
+                      required
                       type="number"
                       name="price"
                       id="price"
@@ -192,6 +211,7 @@ export default function ItemForm() {
                   </label>
                   <div className="relative mt-1 rounded-md shadow-sm ">
                     <input
+                      required
                       type="number"
                       name="bid_increment"
                       id="bid_increment"
@@ -212,9 +232,11 @@ export default function ItemForm() {
                         Start Time
                       </label>
                       <input
+                        required
                         type="datetime-local"
                         name="start_time"
                         id="start-time"
+                        min={format()}
                         // autoComplete="email"
                         className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
@@ -232,9 +254,11 @@ export default function ItemForm() {
                         End Time
                       </label>
                       <input
+                        required
                         type="datetime-local"
                         name="end_time"
                         id="end-time"
+                        min={format()}
                         // autoComplete="email"
                         className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
@@ -265,13 +289,13 @@ export default function ItemForm() {
                 </div>
               </div>
               <div className="px-4 py-3 text-right bg-gray-100 sm:px-6">
-                  <button
-                    type=""
-                    id='save-item'
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Save
-                  </button>
+                <button
+                  type=""
+                  id='save-item'
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Save
+                </button>
               </div>
             </div>
           </form>

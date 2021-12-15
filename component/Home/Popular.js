@@ -50,7 +50,7 @@ export default function Popular() {
           <h2 className="mb-10 text-2xl font-bold text-center">
             POPULAR AUCTIONS
           </h2>
-          <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          <div className="grid h-full grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-6">
             {/* -------- iTEMS -------- */}
             {resources?.map((item) => {
               let newDate = new Date()
@@ -82,7 +82,7 @@ export default function Popular() {
               ) {
                 return (
                   // <p key={item.id}> {item.item_name}</p>
-                  <div key={item.id} className="relative rounded-xl">
+                  <div key={item.id} className="relative rounded-xl ">
                     <div className="">
                       <img
                         src={item.image}
@@ -91,7 +91,7 @@ export default function Popular() {
                       />
                     </div>
                     <div className="flex flex-col items-center justify-around pb-4 pl-2 mt-4 rounded-lg shadow-xl">
-                      <div className="">
+                      <div className="h-full ">
                         <h3 className="text-sm ">
                           <Link
                             href="/detail/[id]"
@@ -114,13 +114,13 @@ export default function Popular() {
                         </p>
                       </div>
 
-                      <div>
+                      <div className="flex justify-between">
                         <AddFav item={item} />
                         <Link
                           href="/detail/[id]"
                           as={`/detail/${item.id}`}
                         >
-                          <button className="p-2 mx-2 font-bold bg-indigo-500 rounded-lg text-md text-neutral-100 hover:bg-violet-200 hover:text-black">
+                          <button className="p-2 mx-2 font-bold text-white bg-yellow-600 rounded-lg text-md hover:bg-yellow-200 hover:text-black">
                             Bidding
                           </button>
                         </Link>
@@ -137,3 +137,4 @@ export default function Popular() {
     );
   }
 }
+

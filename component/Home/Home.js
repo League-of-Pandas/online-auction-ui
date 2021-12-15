@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import Popular from "./Popular";
 import Search from "./Search";
 import Vision from "./Vision";
-import { useAuth } from "../../contexts/auth";
-import useItems from "../../hooks/useItems";
 
 export default function Home() {
   return (
@@ -27,7 +25,7 @@ export default function Home() {
             />
           </div>
         </div>
-      </div>
+        </div>
       <Popular />
       <Vision />
     </main>

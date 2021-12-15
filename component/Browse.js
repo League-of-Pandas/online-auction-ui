@@ -1,11 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-// import useResource from "../hooks/useResource1";
-import { useAuth } from "../contexts/auth";
-import axios from "axios";
 import { useState } from "react";
 import useItems from "../hooks/useItems";
-import Moment from 'moment';
 import Link from "next/link";
 
 
@@ -45,9 +39,7 @@ export default function Browse() {
         });
       }
     }
-
   }
-
   return (
     <>
       <div className="container mx-8">
@@ -124,7 +116,6 @@ export default function Browse() {
               </div>
             </div>
           </div>
-
         );
       })}
     </>

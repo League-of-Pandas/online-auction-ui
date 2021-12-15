@@ -137,28 +137,6 @@ export default function Popular() {
                           price: ${item.init_price}
                         </p>
                       </div>
-
-                      <div className="flex items-center justify-between">
-                        <AddFav item={item} />
-                        <Link
-                          href="/detail/[id]"
-                          as={`/detail/${item.id}`}
-                        >
-                          <a id='item-name'>
-                            {item.item_name}
-                          </a>
-                        </Link>
-                      </h3>
-                      <p className="mt-1 text-sm font-semibold text-yellow-600">
-                        {" "}
-                        {totalDay} Days - {totalHour} Hours
-                      </p>
-                      <p className="mt-1 mb-2 text-sm font-bold text-gray-800">
-                        {" "}
-                        price: ${item.highest_bidding}
-                      </p>
-                    </div>
-
                     <div className="flex items-center justify-between">
                       <AddFav item={item} />
                       <Link
@@ -169,10 +147,9 @@ export default function Popular() {
                           Bidding
                         </button>
                       </Link>
-
+                      </div>
                     </div>
                   </div>
-                </div>
               );
             }
           })}

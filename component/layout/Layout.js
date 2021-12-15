@@ -14,8 +14,12 @@ export default function Layout({ children }) {
         <link href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css" rel="stylesheet" />
       </Head>
       <Header/>
+      <div className='min-h-full'>
       { children }
+      </div>
+      
       <Footer/>
     </div>
+    
   )
 }

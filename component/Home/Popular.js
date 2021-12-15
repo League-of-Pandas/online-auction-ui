@@ -6,9 +6,13 @@ import { useState, useEffect } from "react";
 
 export default function Popular() {
   Moment.locale("en");
-  // const [arr,setArr] = useState([])
+  const [results,setResults] = useState([])
 
   const { resources, loading } = useItems();
+  useEffect(()=>{
+    setResults(resources)
+
+  },[resources])
   // const [item,setItem]= useState()
   // useEffect(()=>{
 
@@ -52,7 +56,7 @@ export default function Popular() {
           </h2>
           <div className="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {/* -------- iTEMS -------- */}
-            {resources?.map((item) => {
+            {results?.map((item) => {
               let newDate = new Date()
               let year = newDate.getFullYear();
               let month = newDate.getMonth() + 1;

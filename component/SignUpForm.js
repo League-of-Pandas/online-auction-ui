@@ -2,10 +2,22 @@ import axios from "axios";
 import React from "react"
 import { useAuth } from "../contexts/auth";
 import useUsers from "../hooks/useUsers";
+import {useRouter} from 'next/router';
+import {useState} from 'react'
 
-function SignUpForm() {
+function SignUpForm({action='/'}) {
     const { createResource } = useUsers();
-
+    const router = useRouter()
+    const [query, setQuery] = useState('')
+  
+  function routing(e){
+        e.preventDefault()
+        console.log(action)
+        console.log(query)
+        router.push({
+            pathname: action,
+            query: {q: e.target.search.value},})
+      }
 
     async function handleSignUp(e) {
         e.preventDefault()
@@ -17,6 +29,10 @@ function SignUpForm() {
         console.log('register user',newUser);
 
         createResource(newUser)
+
+        router.push({
+            pathname: action,
+        })
         // NEXT_PUBLIC_RESOURCE_URLS
         // await axios.post(apiUrl, info);
     }

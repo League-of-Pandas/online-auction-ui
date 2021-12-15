@@ -1,6 +1,6 @@
 import { useAuth } from "../contexts/auth"
 import useItems from "../hooks/useItems"
-
+import Link from "next/link"
 export default function Profile() {
     const { user } = useAuth()
     const { resources, loading } = useItems()
@@ -36,6 +36,9 @@ export default function Profile() {
                                                                 <h3 className="mt-6 text-sm text-gray-500">
                                                                 </h3>
                                                                 <p className="text-base font-semibold text-gray-900">{item.description}</p>
+                                                                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                                                                     <button id="bid-browse" className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">View Item</button>
+                                                                </Link>
                                                             </div>
                                                         </>) :
                                                         (<></>)
@@ -52,7 +55,7 @@ export default function Profile() {
             <div className="bg-gray-100">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="max-w-2xl py-16 mx-auto sm:py-24 lg:py-32 lg:max-w-none">
-                        <h2 className="text-2xl font-extrabold text-gray-900">My Items</h2>
+                        <h2 className="text-2xl font-extrabold text-gray-900">Items i've bid on:</h2>
 
                         <div className="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
                             {
@@ -78,6 +81,9 @@ export default function Profile() {
                                                                 <h3 className="mt-6 text-sm text-gray-500">
                                                                 </h3>
                                                                 <p className="text-base font-semibold text-gray-900">{item.description}</p>
+                                                                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                                                                  <button id="bid-browse" className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">View Item</button>
+                                                                </Link>
                                                             </div>
                                                         </>) :
                                                         (<></>)

@@ -18,15 +18,9 @@ export default function Vision() {
             className="rounded-lg h-36 sm:block sm:col-span-2 md:col-span-1 lg:row-start-2 lg:col-span-2 lg:h-46"
             loading="lazy"
           />
-          {/* <img
-            src="https://i.ibb.co/0nCwG5C/Screenshot-from-2021-12-10-23-07-33.png"
-            alt=""
-            className="rounded-lg h-36 md:block lg:row-start-2 lg:col-span-2 lg:h-32"
-            loading="lazy"
-          /> */}
         </div>
 
-        <p className="col-start-1 mt-4 text-sm leading-6 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1">
+        <p className="col-span-1 col-start-1 row-start-2 mt-4 text-sm leading-6  lg:mt-6">
           An online auction website that offers variety of valuables,
           collectables, cars, electronics and much more for the users to browse
           and bid on. And a modern and secure method to bid on your needs

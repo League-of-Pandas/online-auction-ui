@@ -89,9 +89,37 @@ describe('render_login',()=>{
 // })
 
 
+describe('bid',()=>{
+    it('test_bid',()=>{
+    cy.visit('/');
+    cy.get('#login-button').click();
+    cy.get('#username').type('tasneem');
+    cy.get('#password').type('whatever..1');
+    cy.get('#sign-in').click();
+    cy.get('#item-name').click();
+    cy.get('#bid-input').type('30');
+    cy.get('#submit-bid').click();
+    cy.url().should('contains', '/detail/1');
+    })
+})
 
-
-
+describe('item_details',()=>{
+    it('test_item_details',()=>{
+        cy.visit('/');
+        cy.get('.ease-in-out').click();
+        cy.get('#login-button').click();
+        cy.get('#username').type('tasneem');
+        cy.get('#password').type('whatever..1');
+        cy.get('.min-h-full').click();
+        cy.get('#username').type('000');
+        cy.get('#sign-in').click();
+        cy.get('.mt-8').submit();
+        cy.get('.px-2:nth-child(3)').click();
+        cy.get('#cars').type('Electronics');
+        cy.get('#bid-browse').click();
+        cy.url().should('contains', '/detail/2');
+    })
+})
 
 
 

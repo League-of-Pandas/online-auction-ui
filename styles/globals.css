@@ -10,7 +10,7 @@
 }
 
 .footer {
-  background-color: #f5efc6;
+  background-color: #fffbe4;
 }
 
 .img {
@@ -27,4 +27,8 @@
 
 .margin {
   margin-right: 110px;
+}
+.logo {
+  height: 65px;
+  width: 85px;
 }

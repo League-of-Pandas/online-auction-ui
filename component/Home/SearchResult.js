@@ -62,10 +62,6 @@ export default function SearchResult(){
             }
           }
         }
-          
-          
-        
-
     return(
         <>
         <div className="container mx-8">
@@ -80,7 +76,7 @@ export default function SearchResult(){
           })}
         </select>
       </div>
-    {arr.length?result.map((item,key)=>{
+    {result?.length?result.map((item,key)=>{
        
        let newDate = new Date()
        let year = newDate.getFullYear();
@@ -137,7 +133,7 @@ export default function SearchResult(){
                         <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
                 <button id='bid-button' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
-                        </div> </div></div> )}):<h2 className='my-16 text-xl text-center'>No Matching Items</h2>}
+                        </div> </div></div> )}):<h2 className='text-xl text-center '>No Matching Items</h2>}
       </>
     )
     

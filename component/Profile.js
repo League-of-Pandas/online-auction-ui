@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useAuth } from "../contexts/auth"
 import useItems from "../hooks/useItems"
 
@@ -36,6 +37,9 @@ export default function Profile() {
                                                                 <h3 className="mt-6 text-sm text-gray-500">
                                                                 </h3>
                                                                 <p className="text-base font-semibold text-gray-900">{item.description}</p>
+                                                                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                                                                     <button id="bid-browse" className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
+                                                                </Link>
                                                             </div>
                                                         </>) :
                                                         (<></>)
@@ -78,6 +82,9 @@ export default function Profile() {
                                                                 <h3 className="mt-6 text-sm text-gray-500">
                                                                 </h3>
                                                                 <p className="text-base font-semibold text-gray-900">{item.description}</p>
+                                                                <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                                                                    <button id="bid-browse" className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
+                                                                </Link>
                                                             </div>
                                                         </>) :
                                                         (<></>)

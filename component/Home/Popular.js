@@ -84,7 +84,7 @@ export default function Popular() {
                       <img
                         src={item.image}
                         alt={item.item_name}
-                        className="w-full h-48 rounded-xl"
+                        className="h-48 m-auto rounded-xl"
                       />
                     </div>
                     <div className="flex flex-col items-center justify-around pb-4 pl-2 mt-4 rounded-lg shadow-xl">

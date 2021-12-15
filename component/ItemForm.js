@@ -267,6 +267,7 @@ export default function ItemForm() {
               <div className="px-4 py-3 text-right bg-gray-100 sm:px-6">
                   <button
                     type=""
+                    id='save-item'
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Save

@@ -112,18 +112,17 @@ const ItemDetail = (props) => {
                                     </>
                                 ) : (
                                     <>
-
-                                        <form onSubmit={(e) => handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
-                                            <div className="flex flex-col items-center flex-1 w-full p-2">
-
-                                                <input required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
-                                            </div>
-                                            <div className="flex-shrink-0 ml-4">
-                                                <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
-                                                    Bidding
-                                                </button>
-                                            </div>
-                                        </form>
+                                    <form onSubmit={(e) => handelBidding(e)}  className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <div className="flex flex-col items-center flex-1 w-full p-2">
+                                            
+                                            <input id='bid-input' required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
+                                        </div>
+                                        <div className="flex-shrink-0 ml-4">
+                                            <button type='submit' id='submit-bid' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                Bidding
+                                            </button>
+                                        </div>
+                                    </form>
                                     </>
                                 )
 
@@ -153,7 +152,8 @@ const ItemDetail = (props) => {
                 </section>
             </div>
 
-            <div className='w-10/12 m-auto text-center bg-stone-300 rounded-2xl'>
+
+            <div id='item-details' className='w-10/12 m-auto text-center bg-stone-300 rounded-2xl'>
                 <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Product Details</h3>
@@ -200,6 +200,7 @@ const ItemDetail = (props) => {
     )
 }
 export default ItemDetail
+
 
 export async function getServerSideProps(context) {
     const context_id = context.query.id

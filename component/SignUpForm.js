@@ -27,8 +27,8 @@ function SignUpForm() {
                 <div className="w-full max-w-md space-y-8">
                     <div>
                         <img
-                            className="w-auto h-12 mx-auto"
-                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                            className="w-auto h-32 mx-auto"
+                            src="https://i.pinimg.com/474x/7d/9c/1f/7d9c1fb259e09760c50fc9f336ffe21f.jpg"
                             alt="Workflow"
                         />
                         <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">Register your new account</h2>
@@ -53,11 +53,11 @@ function SignUpForm() {
                             </div>
 
                             <div>
-                                <label htmlFor="username" className="sr-only">
+                                <label htmlFor="username-register" className="sr-only">
                                     UserName
                                 </label>
                                 <input
-                                    id="username"
+                                    id="username-register"
                                     name="UserName"
                                     type="text"
                                     autoComplete="username"
@@ -68,11 +68,11 @@ function SignUpForm() {
                             </div>
                             
                             <div>
-                                <label htmlFor="password" className="sr-only">
+                                <label htmlFor="password-register" className="sr-only">
                                     Password
                                 </label>
                                 <input
-                                    id="password"
+                                    id="password-register"
                                     name="password1"
                                     type="password"
                                     autoComplete="current-password"
@@ -85,13 +85,12 @@ function SignUpForm() {
 
                         
 
-                        <div>
+                        <div className="bg-indigo-500 rounded-lg">
                             <button
                                 type="submit"
                                 className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                                    {/* <LockClosedIcon className="w-5 h-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" /> */}
                                 </span>
                                 Sign Up
                             </button>
@@ -104,29 +103,3 @@ function SignUpForm() {
 }
 
 export default SignUpForm
-            // <form onSubmit={handleSignUp}>
-            //     {/* csrf_token */}
-            //     <input type="hidden" name="remember" value="true" />
-            //     <div >
-            //         <div>
-            //             <label  >Email address</label>
-            //             <input id="id_email" name="email" type="email" required placeholder="E-mail address" />
-
-            //         </div>
-            //         <div>
-            //             <label  >UserName</label>
-            //             <input id="id_UserName" name="UserName" type="text" required placeholder="UserName" />
-
-            //         </div>
-            //         <div>
-            //             <label  >Password</label>
-            //             <input id="id_password1" name="password1" type="password" required placeholder="Password" />
-
-            //         </div>
-            //     </div>
-
-            //     <div>
-            //         <button className="h-12 text-xl " > Sign Up </button>
-
-            //     </div>
-            // </form>

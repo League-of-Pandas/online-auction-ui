@@ -53,11 +53,11 @@ function SignUpForm() {
                             </div>
 
                             <div>
-                                <label htmlFor="username" className="sr-only">
+                                <label htmlFor="username-register" className="sr-only">
                                     UserName
                                 </label>
                                 <input
-                                    id="username"
+                                    id="username-register"
                                     name="UserName"
                                     type="text"
                                     autoComplete="username"
@@ -68,11 +68,11 @@ function SignUpForm() {
                             </div>
                             
                             <div>
-                                <label htmlFor="password" className="sr-only">
+                                <label htmlFor="password-register" className="sr-only">
                                     Password
                                 </label>
                                 <input
-                                    id="password"
+                                    id="password-register"
                                     name="password1"
                                     type="password"
                                     autoComplete="current-password"

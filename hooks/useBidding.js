@@ -1,11 +1,11 @@
 import axios from 'axios'
 import useSWR from 'swr'
 import jwt from 'jsonwebtoken'
-export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS;
+export const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_BIDDERS;
 
 import { useAuth } from '../contexts/auth'
 
-export default function useItems() {
+export default function useBidding() {
 
     const { tokens, logout } = useAuth()
 

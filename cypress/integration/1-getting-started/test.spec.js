@@ -1,93 +1,111 @@
 /// <reference types="cypress" />
-
-// describe('test',()=>{
-//     it('test', ()=>{
-//         // cy.visit('http://localhost:3000/');
-//     // cy.get('.px-2:nth-child(3)').click();
-//     cy.get('#cars').type('Electronics');
-//     cy.get('#cars').type('Vehicles');
-//     cy.get('.bg-yellow-500').click();
-//     cy.get('#username').type('tasneem');
-//     cy.get('#password').type('123');
-//     cy.get('#email').click();
-//     cy.get('#email').type('tasneem.alabsi@gmail.com');
-//     cy.get('#email').click();
-//     cy.get('#email').type('{backspace}');
-//     cy.get('#email').type('tasneem@admin.com');
-//     cy.get('#username').click();
-//     cy.get('.min-h-full').click();
-//     cy.get('.text-sm').click();
-//     cy.get('.mt-8').submit();
-
-//     })
-// })
-
-// describe('browse page', ()=>{
-//     it('test_browse', ()=>{
-//         // cy.get('.px-2:nth-child(3)').click();
-//         cy.get('#cars').type('Vehicles');
-        
-//         cy.get('#cars').type('Jewelry');
-        
-//         cy.get('#cars').type('All');
-        
-        
-
-//     })
-// })
+import 'cypress-file-upload' 
 
 describe('visiting_home_page',()=>{
     it('test_visiting_home_page',()=>{
-        cy.visit('http://localhost:3000/')})})
+        cy.visit('/')})})
 
-describe('register',()=>{
-    it('test_register',()=>{
-        // cy.get('.items-center > .font-bold').click();
-        // cy.get('#username').type('tasneem');
-        // cy.get('#password').type('123');
-        // cy.get('#email').click();
-        cy.get('#email').type('anything@admin.com');
-        cy.get('.min-h-full').click();
-        cy.get('#username').type('anything');
-        cy.get('.min-h-full').click();
-        cy.get('.min-h-full').click();
-        cy.get('#password').type('{backspace}');
-        cy.get('#password').type('{backspace}');
-        cy.get('#password').type('whatever..1')})})
-        // cy.get('.text-sm').click();
-        // cy.get('.mt-8').submit();
-        // cy.get('.text-yellow-600').click();
+describe('visit_browse',()=>{
+    it('test_visit_browse',()=>{
+        cy.visit('/browse');
+        })
+    })
+        
+        
 
-describe('login',()=>{
-    it('test_login',()=>{   
-        cy.get('#username').type('anything');
-        cy.get('#password').type('whatever..1');
-        cy.get('.bg-indigo-600').click();
-        cy.get('.mt-8').submit();
-        cy.get('.px-2:nth-child(3)').click();
-        // cy.get('#cars').type('Electronics');
-        // cy.get('#cars').click();
-        // cy.get('#cars').type('Vehicles');
-        // cy.get('#cars').click();
-        // cy.get('.mx-8').click();
-        // cy.get('#cars').type('Jewelry');
-        cy.get('#cars').click();
-        cy.get('.text-b-500').click()})})
+
+describe('browse',()=>{
+    it('test_browse',()=>{ 
+cy.get('.px-2:nth-child(3)').click();
+cy.get('#cars').type('Vehicles');
+cy.get('#cars').type('Jewelry');
+cy.get('#cars').type('All');
+cy.get('.text-b-500').click();
+})})
 
 describe('search',()=>{
     it('test_search',()=>{ 
-        cy.get('#item').click();
-        cy.get('#item').type('whatever');
-        cy.get('.bg-yellow-500').click();
-        cy.get('.m-2').submit();})})
+// cy.get('#item').click();
+cy.get('#item').type('iPhone');
+cy.get('.m-2').submit();
+cy.url().should('contains','/searchResult?q=iPhone')
+})})
 
-describe('item_details',()=>{
-    it('test_search',()=>{ 
-        cy.get('.w-24').click();
-        cy.url().should('contains', 'http://localhost:3000/detail/1');
-        
+// describe('item_details',()=>{
+//     it('test_item_details',()=>{ 
+//         cy.get('#bid-button').click();
+//         cy.url().should('contains', '/detail/1');
+// })})
 
+describe('render_signUp',()=>{
+    it('test_render_signUp',()=>{
+        cy.get('#register-button').click();
+        cy.url().should("contains","/signUpForm")
+        cy.get('#email').type('tasneem@admin.com')
+        cy.get('#username-register').type('tasneem11')
+        cy.get('#password-register').type('whatever..1')
+        cy.get('#email').should('have.length', 1)
+        cy.get('#username-register').should('have.length', 1)
     })
 })
+
+
+
+describe('render_login',()=>{
+    it('test_render_login',()=>{
+        cy.get('#login-button').click();
+        cy.url().should("contains","/loginForm")
+        cy.get('#username').type('tasneem')
+        cy.get('#password').type('whatever..1')
+        cy.get('#sign-in').click()
+        cy.url().should("contains","/loginForm")
+    })
+    it('test_render_login_fail',()=>{
+        cy.get('#login-button').click();
+        cy.url().should("contains","/loginForm")
+        cy.get('#username').type('rana')
+        cy.get('#password').type('whatever..1')
+        cy.get('#sign-in').click()
+        cy.url().should("contains","/loginForm")
+    })
+})
+
+// describe('add_item',()=>{
+//     it('test_add_item',()=>{
+//         cy.get('#add-item-button').click();
+//         cy.url().should("contains","/itemForm")
+//         cy.get('#title').type('car')
+//         cy.get('#description').type('about the car')
+//         cy.get('#category').type('Vehicles')
+//         cy.get('#image-upload').attachFile('assets/jewel.jpg')
+//         cy.get('#price').type(100)
+//         cy.get('#bid_increment').type(10)
+//         cy.get('#start-time').type('2020-06-01T08:30')
+//         cy.get('#end-time').type('2021-09-01T08:30')
+//         cy.get('#location').type('Amman')
+//         cy.get('#save-item').click()
+//         cy.url().should("contains","/itemForm")
+//     })
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  

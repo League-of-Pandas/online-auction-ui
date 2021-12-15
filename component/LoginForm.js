@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useAuth } from "../contexts/auth"
-import HomeH from "./Home/HomeH";
+import Home from "./Home/Home";
 // import Main from "./main";
 
 export default function LoginForm() {
@@ -14,7 +14,7 @@ export default function LoginForm() {
         setUsername(username => [...username, username])
         setPassword(password => [...password, password])
         login(username, password)
-        // console.log(user);
+        
     }
 
     return (
@@ -22,10 +22,11 @@ export default function LoginForm() {
             {
                 (user) ? (
                     <>
-                        <HomeH />
+                        <Home />
                     </>
 
                 ) : (
+                  
                     <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
                         <div className="w-full max-w-md space-y-8">
                             <div>
@@ -95,7 +96,7 @@ export default function LoginForm() {
                                     <button
                                         type="submit"
                                         className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
+                                    id='sign-in'>
                                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                             {/* <LockClosedIcon className="w-5 h-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" /> */}
                                         </span>
@@ -105,33 +106,11 @@ export default function LoginForm() {
                             </form>
                         </div>
                     </div>
+                  
+                
                 )
             }
 
         </>
     )
 }
-
-                    // <div className="w-2/3 h-56 mx-auto my-10 bg-green-200">
-
-                    //     <form className="w-3/4 p-2 mx-auto my-4 bg-green-200 " onSubmit={handlelogin}>
-                    //         <div className="flex flex-col items-center justify-center">
-                    //             <label htmlFor="username" >User name</label>
-                    //             <br />
-                    //             <input type="text" name="username" id="username" className="flex-grow w-10/12 bg-gray-200 rounded-sm" />
-                    //         </div>
-
-                    //         <div className="flex flex-col items-center justify-center">
-                    //             <label htmlFor="password" >Password</label>
-                    //             <br />
-                    //             <input type="password" name="password" id="password" className="flex-grow w-10/12 mt-2 bg-gray-200 rounded-sm" />
-                    //         </div>
-                    //         <br />
-                    //         <div className="flex-grow w-10/12 mx-auto my-1 font-semibold bg-green-500 rounded ">
-                    //             {/* <Link href="/" passHref > */}
-                    //             <button className="h-12 text-xl " > Log in</button>
-                    //             {/* </Link> */}
-
-                    //         </div>
-                    //     </form>
-                    // </div>

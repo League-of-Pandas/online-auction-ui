@@ -92,7 +92,7 @@ export default function SearchResult() {
           })}
         </select>
       </div>
-      {!loading ? result?.map((item, key) => {
+      {result?.length ? result?.map((item, key) => {
 
         let newDate = new Date()
         let year = newDate.getFullYear();

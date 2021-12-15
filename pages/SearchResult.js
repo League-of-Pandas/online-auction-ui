@@ -124,7 +124,7 @@ export default function SearchResult(){
                           End Date: Expired
                         </p> ) }</h4>
                         <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
-                <button className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
+                <button id='button-bid' className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
                 </Link>
                         </div> </div></div> )}):<h2 className='text-xl text-center my-16'>No Matching Items</h2>}
       </>

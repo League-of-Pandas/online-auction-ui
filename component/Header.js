@@ -51,7 +51,7 @@ export default function Header() {
                 </button>
               </Link>
               <Link href="/itemForm">
-                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">
+                <button id='add-item-button' className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">
                   Add item
                 </button>
               </Link>
@@ -59,17 +59,18 @@ export default function Header() {
           ) : (
             <>
               <Link href="/loginForm">
-                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">
+                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent" id='login-button'>
                   Login
                 </button>
               </Link>
               <Link href="/signUpForm">
-                <button className="px-4 py-2 font-bold text-white bg-yellow-500 border border-yellow-500 rounded hover:bg-yellow-700">
+                <button  id='register-button' className="px-4 py-2 font-bold text-white bg-yellow-500 border border-yellow-500 rounded hover:bg-yellow-700">
                   Register
                 </button>
               </Link>
             </>
           )}
+          
         </div>
       </nav>
     </header>

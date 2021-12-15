@@ -63,7 +63,7 @@ export default function ItemDetail(props) {
                                 <input required type="number" name="bidding" min={props.data.bid_increment} placeholder={props.data.bid_increment} className="font-medium text-indigo-600 border-2 hover:text-indigo-500 border-neutral-900" />
                             </div>
                             <div className="flex-shrink-0 ml-4">
-                                <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                <button id='submit-bid' type='submit' className="font-medium text-indigo-600 hover:text-indigo-500">
                                     SUBMIT
                                 </button>
                             </div>
@@ -75,7 +75,7 @@ export default function ItemDetail(props) {
             </div>
 
             {/* <p className='w-10/12 m-auto mt-10 mb-3 font-bold'>AUCTION DETAILS</p> */}
-            <div className='w-10/12 m-auto text-center bg-stone-300 rounded-2xl'>
+            <div id='item-details' className='w-10/12 m-auto text-center bg-stone-300 rounded-2xl'>
                 <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">Product Details</h3>

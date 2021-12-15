@@ -14,7 +14,7 @@ export default function LoginForm() {
         setUsername(username => [...username, username])
         setPassword(password => [...password, password])
         login(username, password)
-        // console.log(user);
+        
     }
 
     return (
@@ -26,6 +26,7 @@ export default function LoginForm() {
                     </>
 
                 ) : (
+                  
                     <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
                         <div className="w-full max-w-md space-y-8">
                             <div>
@@ -95,7 +96,7 @@ export default function LoginForm() {
                                     <button
                                         type="submit"
                                         className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    >
+                                    id='sign-in'>
                                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                             {/* <LockClosedIcon className="w-5 h-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" /> */}
                                         </span>
@@ -105,6 +106,8 @@ export default function LoginForm() {
                             </form>
                         </div>
                     </div>
+                  
+                </div>
                 )
             }
 

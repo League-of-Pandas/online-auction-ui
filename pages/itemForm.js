@@ -111,7 +111,10 @@ export default function ItemForm() {
                   >
                     <option>Vehicles</option>
                     <option>Arts</option>
-                    <option>Coin</option>
+                    <option>{"Coin & Bullions"}</option>
+                    <option>Electronics</option>
+                    <option>Jewelry</option>
+                    <option>Furniture</option>
                   </select>
                 </div>
                 {/* -------Images ------- */}
@@ -262,6 +265,7 @@ export default function ItemForm() {
               </div>
               <div className="px-4 py-3 text-right bg-gray-100 sm:px-6">
                 <button
+                  id='save-item'
                   type="submit"
                   className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >

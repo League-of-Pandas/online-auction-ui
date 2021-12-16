@@ -9,7 +9,6 @@ export default function SearchResult(){
     const router = useRouter()
   console.log(router.query);
   let search = Object.values(router.query)[0];
-  // let new_name = search.replace(/ /g,'')
 
   const CATEGORY_CHOICES = [
     ("All", "All"),
@@ -123,7 +122,7 @@ export default function SearchResult(){
                       (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
                     )) ? (
                       <p key={item.id}>
-                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minute
+                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minutes
                       </p>
                     ) :
                       (

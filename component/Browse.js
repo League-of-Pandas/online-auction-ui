@@ -100,7 +100,7 @@ export default function Browse() {
                       !(yearApi <= year && monthApi <= month && dayApi <= day && hourApi <= hour && minutesApi <= minutes)
                     ) ? (
                       <p key={item.id}>
-                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minute
+                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minutes
                       </p>
                     ) :
                       (

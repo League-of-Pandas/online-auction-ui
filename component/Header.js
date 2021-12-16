@@ -22,7 +22,7 @@ export default function Header() {
               Browse
             </a>
           </Link>
-          <Link href="#">
+          <Link href="/aboutUs">
             <a className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500">
               About Us
             </a>

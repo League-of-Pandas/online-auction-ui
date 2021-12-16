@@ -13,12 +13,12 @@ export default function Header() {
             alt="Logo"
           />
           <Link href="/">
-            <a className="px-2 py-4 font-semibold border-yellow-500 text-b-500 hover:text-yellow-500">
+            <a className="px-2 py-4 font-semibold duration-300 border-yellow-500 text-b-500 hover:text-yellow-500">
               Home
             </a>
           </Link>
           <Link href="/browse">
-            <a className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500">
+            <a id='browse-link' className="px-2 py-4 font-semibold text-gray-500 transition duration-300 hover:text-yellow-500">
               Browse
             </a>
           </Link>
@@ -41,18 +41,18 @@ export default function Header() {
                 <button
                   id = 'logout'
                   onClick={logout}
-                  className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none"
+                  className="px-4 py-2 mr-2 font-semibold text-yellow-600 duration-300 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none"
                 >
                   Logout
                 </button>
               </Link>
               <Link href="/itemForm">
-                <button id='add-item-button' className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none">
+                <button id='add-item-button' className="px-4 py-2 mr-2 font-semibold text-yellow-600 duration-300 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none">
                   Add item
                 </button>
               </Link>
               <Link href="/profile">
-                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">
+                <button className="px-4 py-2 mr-2 font-semibold text-yellow-600 duration-300 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent">
                   Profile
                 </button>
               </Link>

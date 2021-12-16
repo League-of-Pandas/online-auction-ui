@@ -1,19 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-// import useResource from "../hooks/useResource1";
-import { useAuth } from "../contexts/auth";
-import axios from "axios";
 import { useState } from "react";
 import useItems from "../hooks/useItems";
-import Moment from 'moment';
 import Link from "next/link";
 
 
 export default function Browse() {
   const { loading, resources } = useItems();
-  // console.log(resources);
   const [arr, setArr] = useState(resources);
-
   const CATEGORY_CHOICES = [
     ("All", "All"),
     ("Vehicles", "Vehicles"),
@@ -47,9 +39,7 @@ export default function Browse() {
         });
       }
     }
-
   }
-
   return (
     <>
       <div className="container mx-8">
@@ -67,21 +57,20 @@ export default function Browse() {
       {arr?.map((item, key) => {
         let newDate = new Date()
         let year = newDate.getFullYear();
-        let month = newDate.getMonth() + 1;
+        let month = newDate.getMonth() +1;
         let day = newDate.getDate();
         let hour = newDate.getHours()
         let minutes = newDate.getMinutes()
 
         let dataApi = String(item.end_date)
         let yearApi = dataApi.slice(0, 4)
-        let monthApi = dataApi.slice(5, 7)
+        let monthApi = dataApi.slice(5, 7) 
         let dayApi = parseInt(dataApi.slice(8, 10))
         let totalDay = Math.abs(dayApi - day)
         let hourApi = dataApi.slice(11, 13)
         let totalHour = Math.abs(hourApi - hour)
         let minutesApi = dataApi.slice(14, 16)
         let totalminute = Math.abs(minutesApi - minutes)
-
         return (
 
           <div key={`${key}`} className="container">
@@ -102,25 +91,24 @@ export default function Browse() {
                   current bid:{item.init_price} $
                 </h4>
                 <h4 className="text-sm">
-                  {
-                    (item.is_sold == false && (
-                      yearApi <= year ||
-                      monthApi <= month ||
-                      dayApi <= day ||
-                      (dayApi === day && hourApi <= hour) ||
-                      (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
-                    )) ? (
+                   {
+                    (item.is_sold == false && 
+                      !(yearApi < year) &&
+                      !(monthApi <  month) &&
+                      !(dayApi <  day) &&
+                      !(dayApi < day && hourApi <= hour) &&
+                      !(yearApi <= year && monthApi <= month && dayApi <= day && hourApi <= hour && minutesApi <= minutes)
+                    ) ? (
                       <p key={item.id}>
-                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minate
+                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minute
                       </p>
                     ) :
                       (
                         <p key={item.id}>
-                          End Date: expirated
+                          {(item.is_sold)? ("SOLD"):("End Date Expired") }
                         </p>
                       )
                   }
-                  {/* End Date:{day} Days - {hours} Hours */}
                 </h4>
                 <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
                   <button id="bid-browse" className="w-24 my-2 font-bold text-white bg-yellow-600 rounded hover:bg-yellow-800">Bid Now</button>
@@ -128,7 +116,6 @@ export default function Browse() {
               </div>
             </div>
           </div>
-
         );
       })}
     </>

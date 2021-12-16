@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/auth";
 import Home from "./Home/Home";
 
+import  { useRouter } from "next/router";
+export default function LoginForm({action=`/`}) {
+  const router =useRouter()
 
-export default function LoginForm() {
   const { login, user } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +16,11 @@ export default function LoginForm() {
     setUsername((username) => [...username, username]);
     setPassword((password) => [...password, password]);
     login(username, password);
+    router.push({
+
+      pathname: action,
+    }
+    )
   }
   return (
     <>
@@ -95,6 +102,8 @@ export default function LoginForm() {
               </div>
 
               <div className="bg-indigo-500 rounded-lg">
+              {/* <Link href="/profile"> */}
+              
                 <button
                   type="submit"
                   className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-500 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

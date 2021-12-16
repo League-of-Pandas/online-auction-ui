@@ -123,7 +123,7 @@ export default function SearchResult(){
                       (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
                     )) ? (
                       <p key={item.id}>
-                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minate
+                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minute
                       </p>
                     ) :
                       (

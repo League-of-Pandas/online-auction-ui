@@ -27,7 +27,7 @@ export default function SearchResult(){
         function filterItems (){
           for(let i=0; i<resources?.length; i++){
             let replaced_name = resources[i].item_name.replace(/ /g,'')
-            if(replaced_name.includes(search)){
+            if(replaced_name.toLowerCase().includes(search.toLowerCase())){
               console.log(resources[i].item_name);
               console.log(resources[i]);
               arr.push(resources[i])

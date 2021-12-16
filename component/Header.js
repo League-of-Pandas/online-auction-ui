@@ -39,6 +39,7 @@ export default function Header() {
             <>
               <Link href="/">
                 <button
+                  id = 'logout'
                   onClick={logout}
                   className="px-4 py-2 mr-2 font-semibold text-yellow-600 bg-transparent border border-yellow-500 rounded hover:bg-yellow-500 hover:text-white hover:border-transparent focus:outline-none"
                 >

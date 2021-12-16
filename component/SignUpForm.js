@@ -1,8 +1,14 @@
 import React from "react";
 import useUsers from "../hooks/useUsers";
+import {useRouter} from 'next/router';
+import {useState} from 'react'
 
-function SignUpForm() {
+
+function SignUpForm({action='/loginForm'}) {
   const { createResource } = useUsers();
+  const router = useRouter();
+  
+
   async function handleSignUp(e) {
     e.preventDefault();
     const newUser = {
@@ -12,7 +18,10 @@ function SignUpForm() {
     };
 
     createResource(newUser);
-  }
+    router.push({
+        pathname: action,
+  })
+}
   return (
     <>
       <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">

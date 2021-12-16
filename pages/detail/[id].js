@@ -142,7 +142,7 @@ const ItemDetail = (props) => {
                                                 <label className="w-full p-2 font-black text-indigo-600">{(itemProps.is_sold) ? ("") : ("To Bid on Product Please Login")}</label>
                                                 {(itemProps.is_sold) ? ("") : (<>
                                                 
-                                                    <input required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
+                                                    <input id='bid-price' required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
                                                 </>
                                                 )}
                                             </div>

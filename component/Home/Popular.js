@@ -30,23 +30,7 @@ export default function Popular() {
       let totalminute = Math.abs(minutesApi - minutes)
       
 
-      // if (
-      //   (item.is_sold == false &&
-      //     ((yearApi <= year || monthApi <= month || dayApi <= day)
-      //       &&
-      //       (dayApi <= day && hourApi <= hour)
-      //       &&
-      //       (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
-      //     )
-      //   )
-      // ) {
-      //   const itemBody = {
-
-      //     is_sold: true,
-
-      //   }
-      //   updateResource(itemBody, item.id)
-      // } 
+      
     })
   }
   handleWinner()
@@ -143,7 +127,7 @@ export default function Popular() {
                         href="/detail/[id]"
                         as={`/detail/${item.id}`}
                       >
-                        <button className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">
+                        <button id='bidding-popular' className="p-2 mx-2 font-bold text-white bg-indigo-600 rounded-lg text-md hover:bg-indigo-200 hover:text-black">
                           Bidding
                         </button>
                       </Link>

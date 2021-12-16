@@ -41,7 +41,7 @@ export default function LoginForm({action=`/`}) {
                 Sign in to your account
               </h2>
             </div>
-            <form className="mt-8 space-y-6" onSubmit={handlelogin}>
+            <form id='form-login' className="mt-8 space-y-6" onSubmit={handlelogin}>
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="-space-y-px rounded-md shadow-sm">
                 <div>

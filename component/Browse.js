@@ -100,12 +100,12 @@ export default function Browse() {
                       !(yearApi <= year && monthApi <= month && dayApi <= day && hourApi <= hour && minutesApi <= minutes)
                     ) ? (
                       <p key={item.id}>
-                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minate
+                        End Date:{totalDay} Days - {totalHour} Hours - {totalminute} Minute
                       </p>
                     ) :
                       (
                         <p key={item.id}>
-                          {(item.is_sold)? ("SOLD"):("End Date Expirated") }
+                          {(item.is_sold)? ("SOLD"):("End Date Expired") }
                         </p>
                       )
                   }

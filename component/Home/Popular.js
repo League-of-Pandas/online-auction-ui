@@ -30,23 +30,7 @@ export default function Popular() {
       let totalminute = Math.abs(minutesApi - minutes)
       
 
-      // if (
-      //   (item.is_sold == false &&
-      //     ((yearApi <= year || monthApi <= month || dayApi <= day)
-      //       &&
-      //       (dayApi <= day && hourApi <= hour)
-      //       &&
-      //       (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
-      //     )
-      //   )
-      // ) {
-      //   const itemBody = {
-
-      //     is_sold: true,
-
-      //   }
-      //   updateResource(itemBody, item.id)
-      // } 
+      
     })
   }
   handleWinner()

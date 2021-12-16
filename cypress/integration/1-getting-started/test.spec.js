@@ -155,7 +155,14 @@ cy.get('.m-2').submit();
 })
 })
 
-
+describe('about_us',()=>{
+    it('test_about_us',()=>{
+cy.visit('http://localhost:3000/');
+cy.get('div:nth-child(1) > .relative').click();
+cy.get('.px-2:nth-child(4)').click();
+cy.get('.text-b-500').click();
+})
+})
 
 
 

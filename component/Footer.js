@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-       <footer className="static bottom-0 flex items-center justify-between w-full h-40 px-6 py-4 bg-yellow-400 border-t-8 mt-46 dark:bg-gray-800 sm:flex-row min-h-fi">
+       <footer className="static bottom-0 flex items-center justify-between w-full h-40 px-6 py-4 bg-yellow-400 border-t-4 mt-46 dark:bg-gray-800 sm:flex-row min-h-fi">
         <a
           href="/"
           className="ml-5 text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"

@@ -9,6 +9,7 @@ export default function SearchResult(){
     const router = useRouter()
   console.log(router.query);
   let search = Object.values(router.query)[0];
+  
 
   const CATEGORY_CHOICES = [
     ("All", "All"),
@@ -25,16 +26,11 @@ export default function SearchResult(){
         let arr = []
         function filterItems (){
           for(let i=0; i<resources?.length; i++){
-            let replaced_name = resources[i].item_name.replace(/ /g,'')
-            if(replaced_name.toLowerCase().includes(search.toLowerCase())){
-              console.log(resources[i].item_name);
-              console.log(resources[i]);
+            let replaced_name = resources[i].item_name.replace(/ /g,'').toLowerCase()
+            if(replaced_name.includes(search.toLowerCase())){
               arr.push(resources[i])
               console.log(arr);
-                return arr;
-              
-                
-          }}}
+            };}return arr}
           let filtered_items = filterItems()
           const [result, setArr] = useState(filtered_items);
           let newArr = []

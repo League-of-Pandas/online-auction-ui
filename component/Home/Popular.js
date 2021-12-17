@@ -13,48 +13,45 @@ export default function Popular() {
   function handleWinner() {
     results?.map((item) => {
       let newDate = new Date()
-      let year = newDate.getFullYear();
-      let month = newDate.getMonth() + 1;
-      let day = newDate.getDate();
-      let hour = newDate.getHours()
-      let minutes = newDate.getMinutes()
+      newDate.getHours
+      // let datafromAPI = new Date(item.end_date)
+      let timerS = new Date(item.end_date)
+      // console.log(parseInt( timerS) < ParseInt(newDate));
+        // (datafromAPI < newDate && item.is_sold == false)?  (<>
+        //   {console.log(item.end_date,"Less")}
+        // </>):(<>
+        //   {console.log(item.end_date,"More")}
+        // </>) 
+        // : (<>
 
-      let dataApi = String(item.end_date)
-      let yearApi = dataApi.slice(0, 4)
-      let monthApi = dataApi.slice(5, 7)
-      let dayApi = parseInt(dataApi.slice(8, 10))
-      let totalDay = Math.abs(dayApi - day)
-      let hourApi = dataApi.slice(11, 13)
-      let totalHour = Math.abs(hourApi - hour)
-      let minutesApi = dataApi.slice(14, 16)
-      let totalminute = Math.abs(minutesApi - minutes)
-      
+        // </>)
+      // (datafromAPI < datafromAPI && item.is_sold == false) ? (
 
-      if (
-        (item.is_sold == false &&
-          ((yearApi <= year || monthApi <= month || dayApi <= day)
-            &&
-            (dayApi <= day && hourApi <= hour)
-            &&
-            (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
-          )
-        )
-      ) {
-        const itemBody = {
+      // / if (
+      //   (item.is_sold == false &&
+      //     ((yearApi <= year || monthApi <= month || dayApi <= day)
+      //       &&
+      //       (dayApi <= day && hourApi <= hour)
+      //       &&
+      //       (dayApi <= day && hourApi <= hour && minutesApi <= minutes)
+      //     )
+      //   )
+      // ) {
+      //   const itemBody = {
 
-          is_sold: true,
+      //     is_sold: true,
 
-        }
-        updateResource(itemBody, item.id)
-      } 
+      //   }
+      //   updateResource(itemBody, item.id)
+      // } 
     })
   }
-  handleWinner()
+  // handleWinner()
   useEffect(() => {
     setResults(resources)
 
   }, [resources])
-  
+
   if (loading) {
     return (
       <div className="container mx-auto bg-white ">

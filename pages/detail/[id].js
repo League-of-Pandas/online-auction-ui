@@ -8,8 +8,32 @@ const ItemDetail = (props) => {
     const { user } = useAuth()
     const [itemProps, setItemProps] = useState({})
     const [userDetail, setUserDetail] = useState({})
+    const [timeLeft, setTimeLeft] = useState("");
 
-    const [timeLeft, setTimeLeft] = useState(null);
+    function handleWinner() {
+        let newDate = new Date()
+        // let dataApi = String(props.data.end_date)
+        let dataApi2 = new Date(props.data.end_date)
+        console.log("--------------------------");
+        console.log(props.data.item_name);
+        // console.log(dataApi)
+
+        console.log(dataApi2.getTime())
+        console.log(newDate.getTime())
+        console.log(dataApi2.getTime() < newDate.getTime())
+
+        const itemBody = {
+
+            is_sold: true,
+
+        }
+        if (dataApi2.getTime() < newDate.getTime() && props.data.is_sold == false) {
+            console.log("update");
+        }
+        // updateResource(itemBody, props.data.id)
+
+
+    }
 
     function handleTimer() {
         let dataApi = String(props.data.end_date)
@@ -44,12 +68,18 @@ const ItemDetail = (props) => {
     }
 
     const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL_ITEMS + props.data.id + "/"
+    // handleWinner()
     handleTimer()
     useEffect(() => {
+        // if (timeLeft == "EXPIRED") {
+        //     console.log("EXPIRED");
+
+        // }
         axios.get(apiUrl).then((response) => {
             setItemProps(response.data)
         })
         handleUserDetail()
+
     }, [itemProps])
 
     const { updateResource } = useItems()
@@ -105,7 +135,7 @@ const ItemDetail = (props) => {
                                         </div>
                                         <div className="flex-shrink-0 ml-4">
                                             <button type='submit' className="font-medium text-indigo-600 hover:text-indigo-500" disabled>
-                                                {(itemProps.is_sold) ? ("SOLD") : ("Bidding")}
+                                                {(itemProps.is_sold) ? ("SOLD") : ("")}
                                             </button>
                                         </div>
                                     </>
@@ -113,18 +143,18 @@ const ItemDetail = (props) => {
                                     <>
                                         <form onSubmit={(e) => handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
                                             <div className="flex flex-col items-center flex-1 w-full p-2">
-                                            {(itemProps.is_sold) ? ("") : (<>
-                                                
-                                                <input required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
-                                            </>
-                                            )}
+                                                {(itemProps.is_sold && itemProps.bidder[0] === user.id) ? ("Congratulations You're The Winner") : (<>
+
+                                                    <input required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
+                                                </>
+                                                )}
                                             </div>
                                             <div className="flex-shrink-0 ml-4">
                                                 {(itemProps.is_sold) ? ("SOLD") : (<>
-                                                <button type='submit' id='submit-bid' className="font-medium text-indigo-600 hover:text-indigo-500">
-                                                    {(itemProps.is_sold) ? ("SOLD") : ("Bidding")}
-                                                </button>
-                                                
+                                                    <button type='submit' id='submit-bid' className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                        {(itemProps.is_sold) ? ("SOLD") : ("Bidding")}
+                                                    </button>
+
                                                 </>)}
                                             </div>
                                         </form>
@@ -137,21 +167,21 @@ const ItemDetail = (props) => {
                                 (
                                     <>
                                         {/* className="font-medium text-indigo-600 hover:text-indigo-500" */}
-                                        <form onSubmit={(e) => handelBidding(e)} className="font-medium text-indigo-600 hover:text-indigo-500">
+                                        <form className="font-medium text-indigo-600 hover:text-indigo-500">
                                             <div className="flex flex-col items-center flex-1 w-full p-2">
                                                 <label className="w-full p-2 font-black text-indigo-600">{(itemProps.is_sold) ? ("") : ("To Bid on Product Please Login")}</label>
                                                 {(itemProps.is_sold) ? ("") : (<>
-                                                
+
                                                     <input required type="number" name="bidding" min={itemProps.bid_increment} placeholder={itemProps.bid_increment} className="p-2 font-medium text-indigo-600 border-2 border-indigo-500 rounded-lg hover:text-indigo-500" />
                                                 </>
                                                 )}
                                             </div>
                                             <div className="flex-shrink-0 ml-4">
-                                            {(itemProps.is_sold) ? ("SOLD") : (<>
-                                                <button type='submit' id='submit-bid' className="font-medium text-indigo-600 hover:text-indigo-500">
-                                                    {(itemProps.is_sold) ? ("SOLD") : ("Bidding")}
-                                                </button>
-                                                
+                                                {(itemProps.is_sold) ? ("SOLD") : (<>
+                                                    <button type='submit' id='submit-bid' className="font-medium text-indigo-600 hover:text-indigo-500" disabled>
+                                                        {(itemProps.is_sold) ? ("SOLD") : ("Bidding")}
+                                                    </button>
+
                                                 </>)}
 
                                             </div>

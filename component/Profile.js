@@ -68,7 +68,7 @@ export default function Profile() {
                                         resources?.map((item) => (
 
                                             (item.bidder.includes(user.id)) ?
-                                                (<>
+                                                (
                                                     <div key={item.id} className="relative group">
                                                         <div key={item.id} className="relative w-full overflow-hidden bg-white rounded-lg h-80 group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                                                             <img
@@ -79,10 +79,13 @@ export default function Profile() {
                                                         </div>
                                                         <h3 className="mt-6 text-sm text-gray-500">
                                                         </h3>
-                                                        <p className="text-base font-semibold text-gray-900">{item.description}</p>
+                                                        <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                                                            <a className="text-base font-semibold text-gray-900">{item.item_name}</a>
+                                                        </Link>
+                                                       
 
                                                     </div>
-                                                </>) :
+                                                ) :
                                                 (<></>)
 
                                         ))
@@ -109,7 +112,7 @@ export default function Profile() {
 
 
                                             ((item.bidder[0] === user.id) && item.is_sold) ?
-                                                (<>
+                                                (
                                                     <div key={item.id} className="relative group">
                                                         <div key={item.id} className="relative w-full overflow-hidden bg-white rounded-lg h-80 group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                                                             <img
@@ -120,9 +123,11 @@ export default function Profile() {
                                                         </div>
                                                         <h3 className="mt-6 text-sm text-gray-500">
                                                         </h3>
-                                                        <p className="text-base font-semibold text-gray-900">{item.description}</p>
+                                                        <Link href='/detail/[id].js' as={`/detail/${item.id}`}>
+                                                            <a className="text-base font-semibold text-gray-900">{item.item_name}</a>
+                                                        </Link>
                                                     </div>
-                                                </>) :
+                                                ) :
                                                 (<></>)
 
 

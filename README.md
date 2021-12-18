@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Online Auction
 
-## Getting Started
+Website that allows users to show and sell their products online by allowing other people to bid on the price. So it helps people to get unique products that cannot be found in the usual markets.  
 
-First, run the development server:
+##  MVP Features:
+- Custom user login system.
+- Form designed for product information.
+- A page for displaying the available products.
+- A form that allows other users to bid on a certain product.
+- A page that has the product’s owner’s information shown after someone wins the bidding and wants to connect with the owner.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Group Members 
+1. Tahany Ali
+2. Tasneem Al-Absi
+3. Abdullah Nazzal
+4. Anas Abusaif
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live site
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+[Online Auction](https://online-auction-ui.vercel.app/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## WireFrame:
 
-## Learn More
+[Figma](https://www.figma.com/file/VtVVKm623TA3aM68s7CbvO/Untitled?node-id=0%3A1)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Trello Board
+[trello](https://trello.com/b/z8WzusTp/online-auctions)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Software Requirements:
+[requirements.md](https://github.com/League-of-Pandas/online-auction-api/blob/main/requirements.md)
+      
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Domain Modeling:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Domain Modeling](https://i.ibb.co/pzg0sWk/Domain-Modeling.png)
+
+---
+
+## DataBase Digram:
+
+![database](https://i.ibb.co/Q6yDZ01/database.png)

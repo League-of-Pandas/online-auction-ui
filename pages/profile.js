@@ -3,7 +3,7 @@ import LoginForm from "../component/LoginForm";
 
 import { useAuth } from "../contexts/auth";
 
-export default function itemForm() {
+export default function profile() {
   const {user} = useAuth()
   return (
     <>

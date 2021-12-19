@@ -1,3 +1,1 @@
-module.exports = {
-  reactStrictMode: true,
-}
+module.exports = { content: ["./src/**/*.{html,js}"], theme: { extend: {}, }, plugins: [], }
